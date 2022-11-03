@@ -1,0 +1,27 @@
+body{
+   height:100vh;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.live-btn{
+    background-color: transparent;
+    border-color: rgb(131, 0, 0);
+    color: rgb(131, 0, 0);
+    margin: 30px auto;
+ }
+ .live-btn:hover{
+    background-color: rgb(131, 0, 0);
+ }
+ .back-btn{
+    background-color: transparent;
+    border-color: rgb(118, 154, 160);
+    color: rgb(118, 154, 160);
+    margin: 30px auto;
+ }
+ .back-btn:hover{
+    background-color: rgb(118, 154, 160);
+ }
+ .buttons{
+    text-align: center;
+ }

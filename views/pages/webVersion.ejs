@@ -1,0 +1,73 @@
+<%layout('layouts/boilerplate.ejs')%>
+<link href="/css/webVersion.css" rel="stylesheet" type="text/css" />
+<!-- body -->
+<div class="main-section">
+  <div class="custom-card">
+    <form action="" autocomplete="off">
+      <h1 class="">طريقك</h1>
+      <!-- location -->
+      <div class="autocomplete" style="width: 300px">
+        <input
+          id="myInput"
+          type="text"
+          name="myCountry"
+          placeholder="Location"
+        />
+      </div>
+      <!-- end Of loation-->
+
+      <!-- destination -->
+      <div class="autocomplete" style="width: 300px">
+        <input
+          id="myInput1"
+          type="text"
+          name="myCountry"
+          placeholder="Destination"
+        />
+      </div>
+      <!-- end Of destination -->
+
+      <!-- Cost Or Time -->
+      <div class="radio">
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio1"
+            value="option1"
+          />
+          <label class="form-check-label" for="inlineRadio1">Cost</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio2"
+            value="option2"
+          />
+          <label class="form-check-label" for="inlineRadio2">Time</label>
+        </div>
+      </div>
+      <!-- end of cost or time -->
+
+      <!-- submit button -->
+      <div class="ctrl-btn">
+        <a href="/webVersion/result" class="btn btn-lg btn-primary result-btn"
+          >OK</a
+        >
+      </div>
+      <!-- end of submit button  -->
+    </form>
+  </div>
+  <!-- blind mode button -->
+  <button class="blind-btn">
+    <i class="fa-solid fa-person-walking-with-cane fa-2xl fa-beat"></i>
+  </button>
+  <!-- end of blind mode button -->
+</div>
+<!-- End Of main Section -->
+<script src="seed.js"></script>
+<script src="seed2.js"></script>
+<script src="/js/blindmode.js"></script>

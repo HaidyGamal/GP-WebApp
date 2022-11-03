@@ -1,0 +1,35 @@
+/* NavBar Section */
+.navbar{
+    background-color: #1f1c1c;
+}
+.navbar .navbar-toggler{
+    background-color:#ababab ;
+    transition: background-color 0.25s;
+}
+.navbar .navbar-toggler:hover{
+    background-color:#dad5d5 ;
+}
+.navbar-nav .nav-item .nav-link {
+    color: #ababab;
+    transition: all 0.5s;
+    border-bottom:2px solid #ababab;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #FFFFFF;
+    border-bottom:2px solid #d5ee5b ;
+    /* box-shadow: 0 0.5em 0.5em -0.4em #d5ee5b; */
+    transform: translatey(-2px);
+}
+.navbar-nav{
+    margin-left:15vw;  
+}
+.navbar-light .navbar-brand {
+    color: white;
+    font-weight: 800;
+}
+.navbar-light .navbar-brand:hover{
+    color: rgb(189, 186, 186);
+}
+ /* End Of NavBar Section */

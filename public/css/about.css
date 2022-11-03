@@ -1,0 +1,29 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    font-size: 65px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.carousel-item{
+    background-color: rgb(189, 189, 189);
+    padding: 25px 25px 80px 25px;
+    border-radius: 20px;
+}
+.carousel-item p{
+    width: 70%;
+}
+.carousel-item h2{
+   margin: 30px auto;
+}
+#carouselExampleFade{
+    text-align: center;
+    width: 70%;
+    
+}

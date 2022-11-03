@@ -1,0 +1,231 @@
+* { box-sizing: border-box; }
+body{
+   height: 100vh;
+}
+.main-section{
+   background-image: url(../images/pexels-mihis-alex-21014.jpg);
+   background-size: cover;
+   background-position: top center;
+   position: relative;
+   z-index: 1;    
+   display: flex;
+   flex-direction: row;
+}
+.main-section .custom-card{
+   max-width: 1200px;
+   min-height: 100vh;
+   margin: 0 auto 0 auto;
+   padding: 0 50px;
+   justify-content:center ;
+   display: flex;
+   align-items: center;
+}
+.main-section::after{
+   position: absolute;
+   content: '';
+   left: 0;
+   top:0;
+   height: 100%;
+   width: 100%;
+   background-color: black;
+   opacity: 0.7;
+   z-index: -1;
+}
+form h1{
+   font-size: 3rem;
+   font-weight: 600;
+   color: #FFFFFF;
+   display: flex;
+   justify-content: center;
+   margin-bottom: 30px;
+ }
+ form{
+   position: absolute;
+   transform: translate(-50%, -50%);
+   top: 50%;
+   left: 20vw;
+   padding: 50px 50px;
+   margin-top: 30px;
+   border-radius: 5px 5px 5px 5px ;
+   max-height: 100vh;
+   background-color: rgba(61, 60, 60, 0.557);
+   overflow-y: auto;
+}
+ /* to hide scrollbar while being able to scroll */
+ form::-webkit-scrollbar { 
+   display: none;  /* Safari and Chrome */
+}
+input[type="text"]{
+   width: 60%;
+   padding: 1.5vh 2vw;
+   border:none;
+   border-bottom: 1px solid rgb(100, 89, 121);
+   outline: none;
+   border-radius: 5px 5px 0 0 ;
+   background-color: white;
+   font-size: 16px;
+}
+.input-field{
+   display: flex;
+   justify-content: center;
+ }
+ 
+ 
+.form-check-label{
+   color: white;
+   font-size: 1.5rem;
+   font-weight: 400;
+}
+.radio{
+   display: flex;
+   justify-content: space-evenly;
+   margin:20px 40px;
+}
+#inlineRadio1{
+   accent-color: rgb(118, 154, 160);
+   width: 20px;
+   height: 20px;
+}
+#inlineRadio2{
+   accent-color: rgb(118, 154, 160);
+   width: 20px;
+   height: 20px;
+}
+.result-btn{
+   background-color: transparent;
+   border-color: rgb(118, 154, 160);
+   color: rgb(118, 154, 160);
+}
+.result-btn:hover{
+   background-color: rgb(118, 154, 160);
+}
+.ctrl-btn{
+   display: flex;
+   justify-content: center;
+   margin-top: 50px;
+}
+ /* **************************************** */
+ 
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-items1{
+   position: absolute;
+   border: 1px solid #d4d4d4;
+   border-bottom: none;
+   border-top: none;
+   z-index: 99;
+   /*position the autocomplete items to be the same width as the container:*/
+   top: 100%;
+   left: 0;
+   right: 0;
+ }
+ .autocomplete-items1 div {
+   padding: 10px;
+   cursor: pointer;
+   background-color: #fff;
+   border-bottom: 1px solid #d4d4d4;
+ }
+ .autocomplete-items1 div:hover {
+   /*when hovering an item:*/
+   background-color: #e9e9e9;
+ }
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+/* Blind mode button */
+.blind-btn{
+  height: 90px;
+  width: 90px;
+  margin: 560px 50px 0px auto;
+  border-radius: 50%;
+  transition: all 0.5s ease; 
+  background-color: rgb(255, 255, 255);
+  color: green;
+  z-index: 1;
+}
+.blind-btn:hover{
+  height: 100px;
+  width: 100px;
+  transform: translate();
+  background-color: white;
+  color: green;
+}
+.blind-activated{
+  background-color: green;
+  color: white;
+}
+.blind-activated:hover{
+  background-color: green;
+  color: white;
+}
+/* end of blind mode button */
+/* media queries */
+@media (min-width:320px)  {
+   form {
+     left: 50vw;
+   }  
+   .blind-btn{
+    margin: 600px 50px 0px auto;
+   }
+  }
+  
+  @media (min-width:630px)  {
+    form{
+     left:50vw;
+    }   
+  }
+  @media (min-width:890px)  {
+   form{
+    left: 30vw;
+   }
+ }
+  @media (min-width:976px)  {
+    form{
+     left: 27vw;
+    }
+  }
+  @media (min-width:1029px)  {
+     form{
+      left: 20vw;
+     }
+   }

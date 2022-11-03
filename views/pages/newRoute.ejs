@@ -1,0 +1,224 @@
+<%layout('layouts/boilerplate.ejs')%>
+<!-- newRoute.css -->
+<link href="/css/newRoute.css" rel="stylesheet" type="text/css" />
+
+<!-- form body with bootstrap client-side validation-->
+<div class="content">
+  <h1>Add New Route</h1>
+  <form class="needs-validation" novalidate>
+    <!-- 1st row (from , to) -->
+    <div class="form-row">
+      <div class="col-6 mb-3">
+        <label for="validationCustom01">From</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom01"
+          placeholder="location"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="col-6 mb-3">
+        <label for="validationCustom02">To</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom02"
+          placeholder="destination"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <!-- end of 1st row -->
+    <!-- 2nd row  -->
+    <div class="form-row">
+      <div class="col-6 mb-3">
+        <label for="validationCustom05">No. of Transportations</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom05"
+          required
+        />
+        <div class="invalid-feedback">Please provide a valid number.</div>
+      </div>
+    </div>
+    <!-- end of 2nd row -->
+    <!-- 3rd row (dorpdown list , icons box) -->
+    <div class="form-row">
+      <div class="col-6 mb-3">
+        <label for="validationCustom04">Transportation</label>
+        <select class="custom-select" id="validationCustom04" required>
+          <option selected disabled value="">Choose...</option>
+          <option value="Bus">Bus</option>
+          <option value="Metro">Metro</option>
+          <option value="Microbus">Microbus</option>
+        </select>
+        <div class="invalid-feedback">Please select a transportaion.</div>
+      </div>
+      <div class="col-3 mb-3 mt-2">
+        <label for="transportation-related"></label>
+        <input
+          type="text"
+          class="form-control"
+          id="transportation-related"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <!-- end of 3rd row  -->
+    <!-- 4th row (cost) -->
+    <div class="form-row">
+      <div class="col-3 mb-3">
+        <label for="cost">Cost</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cost"
+          placeholder="Optional"
+        />
+      </div>
+    </div>
+    <button class="btn btn-success submit-btn">Submit</button>
+    <a href="/webVersion" class="btn btn-primary back-btn" type="submit"
+      >Back</a
+    >
+  </form>
+</div>
+<!--  popup -->
+<div class="popup">
+  <div class="auth-sections">
+    <div class="login-tab"><h2>Login</h2></div>
+    <div class="signup-tab"><h2>SignUp</h2></div>
+  </div>
+  <!-- login tab form -->
+  <form class="needs-validation login-form" novalidate>
+    <!-- 1st row (Email) -->
+    <div class="form-row">
+      <div class="col-12 mb-3">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" required />
+        <div class="invalid-feedback">Please provide a valid Email.</div>
+      </div>
+    </div>
+    <!-- end of 1st row -->
+    <!-- 2nd row (Password) -->
+    <div class="form-row">
+      <div class="col-12 mb-3">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="Password" required />
+        <div class="invalid-feedback">Please provide a valid Password.</div>
+      </div>
+    </div>
+    <!-- end of 2nd row -->
+    <!-- 3rd row (check box) -->
+    <div class="form-group">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="RememberMe"
+        />
+        <label class="form-check-label" for="RememberMe"> Remember me </label>
+      </div>
+    </div>
+    <!-- end of 3rd row -->
+    <!-- login button -->
+    <button class="btn btn-success login-btn">Login</button>
+    <p>Don't have an account? <a href="" class="anchor-signup">Sign Up</a>.</p>
+    <!-- end of login button -->
+  </form>
+  <!-- end of login tab form -->
+
+  <!-- sign up tab form -->
+  <form class="needs-validation signup-form" novalidate>
+    <!-- 1st row (name) -->
+    <div class="form-row">
+      <div class="col-6 mb-3">
+        <label for="FisrtName">Fisrt name</label>
+        <input type="text" class="form-control" id="FisrtName" required />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="col-6 mb-3">
+        <label for="LastName">Last Name</label>
+        <input type="text" class="form-control" id="LastName" required />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <!-- end of 1st row -->
+    <!-- 2nd row (email) -->
+    <div class="form-row">
+      <div class="col-12 mb-3">
+        <label for="EmailReg">Email</label>
+        <input type="email" class="form-control" id="EmailReg" required />
+        <div class="invalid-feedback">Please provide a valid Email.</div>
+      </div>
+    </div>
+    <!-- end of 2nd row -->
+    <!-- 3rd row (password) -->
+    <div class="form-row">
+      <div class="col-12 mb-3">
+        <label for="PasswordReg">Password</label>
+        <input type="password" class="form-control" id="PasswordReg" required />
+        <div class="invalid-feedback">Please provide a valid password.</div>
+      </div>
+    </div>
+    <!-- end of 3rd row -->
+    <!-- 4th row (phone number) -->
+    <div class="form-row">
+      <div class="col-12 mb-3">
+        <label for="PhoneNum">Phone Number</label>
+        <input type="password" class="form-control" id="PhoneNum" required />
+        <div class="invalid-feedback">Please provide a valid phone number.</div>
+      </div>
+    </div>
+    <!-- end of 4th row -->
+    <!-- login button -->
+    <button class="btn btn-success login-btn">Sign Up</button>
+    <p>Already have an account? <a href="" class="anchor-login">Sign In</a>.</p>
+    <!-- end of login button -->
+  </form>
+  <!-- end of sign up tab form -->
+</div>
+<!-- end of popup -->
+
+<!-- popup greyed out backgroung -->
+<div class="popup-background"></div>
+<!-- end of popup greyed out backgroung -->
+
+<!-- client-side validation -->
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
+</script>
+<!-- end of client-side validation -->
+<!-- login java script -->
+<script src="/js/login.js"></script>

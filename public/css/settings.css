@@ -1,0 +1,21 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+i{
+    margin: 25px 15px auto auto;
+}
+a{
+    text-decoration: none  !important;
+    color: black;
+}
+.custom-card{
+   padding-top: 7em;
+    background-color: rgb(189, 189, 189);
+    min-width: 50vw;
+    min-height: 50vh;
+    text-align: center;
+    border-radius:10px;
+}

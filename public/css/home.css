@@ -1,0 +1,277 @@
+body{
+    margin: 0;
+    padding:0
+ } 
+ /* Main Section */
+ /* to hide scrollbar while being able to scroll */
+ body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+ }
+ #main{
+    background-image: url(../images/annie-spratt-AFB6S2kibuk-unsplash.jpg);
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 70px;
+ }
+ #main .main{
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 50px;
+    justify-content: flex-start;
+ }
+ #main::after{
+    position: absolute;
+    content: '';
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: -1;
+ }
+ #main h1{
+    display: block;
+    width: fit-content;
+    font-size: 70px;
+    font-weight:800;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    position: relative;
+    color: transparent;
+    animation: text_reveal 0.5s ease forwards;
+    animation-delay: 1s;
+ }
+ #main h2{
+    display: block;
+    width: fit-content;
+    font-size: 30px;
+    position: relative;
+    color: transparent;
+    animation: text_reveal 0.5s ease forwards;
+    animation-delay: 2s;
+    margin-top: 1.2rem ;
+ }
+ #main h1 .main-animation{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: #ffffff;
+    animation: text_reveal_box 1s ease;
+    animation-delay: 0.5s;
+ }
+ #main h2 .main-animation{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: #ffffff;
+    animation: text_reveal_box 1s ease;
+    animation-delay: 1.5s;
+ }
+ .main-buttons{
+    margin: 4.5rem 0;
+ }
+ .btn.download-button{
+    background:rgba(255, 255, 255, 0.712);
+    color:rgb(62, 144, 8);
+    border:2px solid ;
+    transition: border-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s, background-color 0.25s;
+}
+.btn.download-button:hover{
+    background-color: #337507;
+    border-color: #337507;
+    color: white;
+    box-shadow: 0 0.5em 0.5em -0.4em #337507 ; 
+    transform: translatey(-0.25em);
+    cursor: pointer;
+}
+.btn.web-button{
+    background: rgba(95, 95, 95, 0.712);
+    color:rgb(154, 197, 205);
+    border:2px solid ;
+    /* padding: 1rem 2rem;
+    font-size: 1.5rem; */
+    transition: border-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s, background-color 0.25s;
+}
+.btn.web-button:hover{
+    background-color: rgb(118, 154, 160);
+    border-color: rgb(118, 154, 160);
+    color: white;
+    box-shadow: 0 0.5em 0.5em -0.4em rgb(118, 154, 160); 
+    transform: translatey(-0.25em);
+    cursor: pointer;
+}
+/* End Of Main Section */
+/* Services Section */
+#services .services{
+    flex-direction: column;
+    text-align: center;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+#services .service-top p{  
+    font-size: 1.4rem;
+    margin-top: 5px;
+    width: 400px; 
+    line-height: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+}
+#services .service-bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+#services .service-item{
+    flex-basis: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+    background-image: url(../images/annie-spratt-ixRYvsuvazA-unsplash.jpg);
+    background-size: cover;
+    margin: 10px 5%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+#services .service-item::after{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    width:100%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7;
+    z-index: -1;
+}
+#services .service-bottom .icon{
+    margin-bottom: 20px;
+    color: #ced2d6;
+}
+#services .service-item h2{
+    color: white;
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+#services .service-item p{
+    color: white;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+    font-weight: 100;
+    justify-content: center;
+}
+.section-title{
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+/* End Of Services Section */
+/* Footer Section */
+#footer{
+    background-image: linear-gradient(60deg, #949393 0%, #475253fd 100%); 
+}
+#footer .footer{
+    min-height: 200px;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
+#footer .social-icon{
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+#footer .social-item{
+    height: 5px;
+    width: 50px;
+    margin: 30px 30px;
+}
+#footer p{
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+}
+#footer .social-item i{
+    color: rgb(89, 86, 86);
+    transition: 0.3s ease color;
+}
+#footer .social-item .facebook:hover{
+    color: rgb(62, 62, 143);
+}
+#footer .social-item .linkedIn:hover{
+    color: rgb(62, 62, 143);
+}
+#footer .social-item .insta:hover{
+    color: rgb(121, 36, 36);
+}
+/* End Of Footer Section */
+/* Key Frames Animation */
+@keyframes text_reveal_box{
+    50%{
+        width: 100%;
+        left: 0;
+    }
+    100%{
+        width: 0;
+        left: 100%;
+    }
+}
+@keyframes text_reveal{
+    100%{
+        color: #ffffff;
+    }
+}
+/* End Of Key Frames Animation */
+
+/* Media Query for tablet */
+@media only screen and (min-width:760px){
+    /* Services Sections */
+    #services .service-top p{
+        width: 500px;
+        max-width: 0 auto;
+    }
+    #services .service-bottom .service-item{
+        flex-basis: 45%;
+        margin: 2.5%;
+    }
+}
+/* End Of Media Query for tablet */
+
+/* Media Query for Desktop */
+@media only screen and (min-width: 1200px){
+    #services .service-bottom .service-item{
+        flex-basis: 22%;
+        margin: 1.5%;
+    }
+    #services .service-top p{
+        width: 600px;
+        max-width: 0 auto;
+    }
+    /* main section */
+    #main h1{
+        font-size: 85px;
+    }
+    #main h2{
+        font-size: 35px ;
+    }
+}
+/* Media Query for Desktop */

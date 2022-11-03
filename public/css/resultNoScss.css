@@ -1,0 +1,39 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 3rem;
+}
+#inlineRadio1{
+    accent-color: rgb(118, 154, 160);
+    width: 20px;
+    height: 20px;
+ }
+ label{
+    font-size: 20px;
+ }
+ #inlineRadio2{
+    accent-color: rgb(118, 154, 160);
+    width: 20px;
+    height: 20px;
+ }
+ .back-btn{
+    background-color: transparent;
+    border-color: rgb(118, 154, 160);
+    color: rgb(118, 154, 160);
+    margin: 30px auto;
+ }
+ .back-btn:hover{
+    background-color: rgb(118, 154, 160);
+ }
+ .radio{
+   margin-bottom: 20px;
+   text-align: center;
+ }
