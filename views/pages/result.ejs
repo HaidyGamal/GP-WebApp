@@ -30,15 +30,23 @@
 <div class="picker">
   <div class="picker-window"></div>
   <ul class="picker-route">
-    <% for(let i = 0; i<= 20 ; i++){ %>
-    <li class="li">Bus1 - Bus2 - Bus3</li>
-    <% } %>
+    <%for(let i=0 ; i< numberOfAvailablePaths ; i++){%>
+    <form
+      action="/webVersion/result/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+      method="post"
+    >
+      <button class="route-btn btn btn-lg btn-primary">
+        <li>طريق رقم <%=routeNumber%></li>
+      </button>
+    </form>
+
+    <% routeNumber ++ %> <%}%>
   </ul>
 </div>
 
-<!-- back button -->
+<%# back button #%>
 <div class="ctrl-btn">
   <a href="/webVersion" class="btn btn-lg btn-primary back-btn">Back</a>
 </div>
-<!-- result.js -->
+<%# result.js #%>
 <script src="/js/result.js"></script>

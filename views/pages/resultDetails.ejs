@@ -2,10 +2,21 @@
 <!-- resultDetails.css -->
 <link href="/css/resultDetails.css" rel="stylesheet" type="text/css" />
 <!-- body -->
-<h1>(your path in details)</h1>
+<!-- <h1>(your path in details)</h1> -->
+<ul>
+  <%for(let i = 0 ; i < numberOfPathStops ; i++){%>
+  <%if(routes[id-1][i].lineNumber != undefined){%>
+  <li><%=routes[id-1][i].name%> (خط رقم : <%=routes[id-1][i].lineNumber%>)</li>
+  <%}else{%>
+  <li><%=routes[id-1][i].name%> (ميكروباص)</li>
+  <%}%> <%}%>
+  <li><%=lastStop%></li>
+</ul>
 <div class="buttons">
   <a href="/resultDetails/liveLocation" class="btn btn-lg live-btn btn-danger"
     >Start Live Location</a
   >
-  <a href="/webVersion/result" class="btn btn-lg back-btn btn-primary">Back</a>
+  <button onclick="history.back()" class="btn btn-lg back-btn btn-primary">
+    Back
+  </button>
 </div>

@@ -3,27 +3,27 @@
 <!-- body -->
 <div class="main-section">
   <div class="custom-card">
-    <form action="" autocomplete="off">
+    <form action="/webVersion/result" method="post" autocomplete="off">
       <h1 class="">طريقك</h1>
       <!-- location -->
       <div class="autocomplete" style="width: 300px">
-        <input
-          id="myInput"
-          type="text"
-          name="myCountry"
-          placeholder="Location"
-        />
+        <input id="myInput" type="text" name="Location" list="Location" placeholder="Location" />
+        <datalist id="Location">
+          <%for(let i = 0  ; i<stops.length ; i++){%>
+            <option value="<%=stops[i]%>"></option>
+            <%}%>
+        </datalist>
       </div>
       <!-- end Of loation-->
 
       <!-- destination -->
       <div class="autocomplete" style="width: 300px">
-        <input
-          id="myInput1"
-          type="text"
-          name="myCountry"
-          placeholder="Destination"
-        />
+        <input id="myInput1" type="text" name="Destination" list="Destination" placeholder="Destination"/>
+        <datalist id="Destination">
+          <%for(let i = 0  ; i<stops.length ; i++){%>
+            <option value="<%=stops[i]%>"></option>
+            <%}%>
+        </datalist>
       </div>
       <!-- end Of destination -->
 
@@ -54,9 +54,7 @@
 
       <!-- submit button -->
       <div class="ctrl-btn">
-        <a href="/webVersion/result" class="btn btn-lg btn-primary result-btn"
-          >OK</a
-        >
+        <button class="btn btn-lg btn-primary result-btn">OK</button>
       </div>
       <!-- end of submit button  -->
     </form>

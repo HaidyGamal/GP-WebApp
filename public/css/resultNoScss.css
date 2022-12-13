@@ -11,6 +11,7 @@ h1{
     margin-bottom: 30px;
     margin-top: 3rem;
 }
+
 #inlineRadio1{
     accent-color: rgb(118, 154, 160);
     width: 20px;
@@ -37,3 +38,24 @@ h1{
    margin-bottom: 20px;
    text-align: center;
  }
+ .route-btn{
+   background-color: transparent;
+   border-color: rgb(118, 154, 160);
+   color: rgb(118, 154, 160);
+   margin: 20px auto;
+   border: none;
+   padding: 10px 50px;
+ }
+ .route-btn:hover{
+   background-color:rgb(118, 154, 160);
+}
+/* to prevent the ugly border / bluish color indicating a click simply*/
+/* button.btn{
+   user-select: none;
+   -webkit-user-select: none;
+   -webkit-tap-highlight-color: transparent;
+ }
+button.btn:focus {
+   box-shadow: none;
+   outline: none;
+ } */
