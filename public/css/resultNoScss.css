@@ -4,7 +4,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-h1{
+.main-heading{
     font-size: 40px;
     font-weight: 700;
     text-align: center;
@@ -45,6 +45,9 @@ h1{
    margin: 20px auto;
    border: none;
    padding: 10px 50px;
+ }
+ .route-heading{
+   font-size: 25px;
  }
  .route-btn:hover{
    background-color:rgb(118, 154, 160);

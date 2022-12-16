@@ -76,3 +76,34 @@
 //   initItems();
 //   scrollW.onscroll = scrollWrap;
 // });
+// // to prevent form resubmission on refresh
+// document.querySelector("form").addEventListener("click", function(event){
+//     event.preventDefault()
+//   });
+function select()
+    {
+     const Cost=document.getElementById("inlineRadio1");
+     const Distance=document.getElementById("inlineRadio3");
+     const Time=document.getElementById("inlineRadio2");
+     if(Cost.checked==true)
+     {
+        document.availablePathsForm.action="/webVersion/result/orderByCost";
+        // document.detailsForm.action="/showResult/orderByCost/details/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+     }
+     else if(Distance.checked==true)
+     {
+        document.availablePathsForm.action="/webVersion/result/orderByDistance";
+        // document.detailsForm.action="/showResult/orderByDistance/details/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+        // disORcos.innerHTML="<h1>hi</h1>"
+      
+     }
+     else{
+        document.availablePathsForm.action="";
+     }
+   }
+function selectPath(){
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.detailsForm.action="/showResult/orderByDistance/details/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+    });
+        
+}

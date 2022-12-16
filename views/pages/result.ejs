@@ -2,7 +2,7 @@
 <link href="/css/result.css" rel="stylesheet" type="text/css" />
 <link href="/css/resultNoScss.css" rel="stylesheet" type="text/css" />
 <!-- body -->
-<h1>: طريقك على حسب</h1>
+<h1 class="main-heading">: طريقك على حسب</h1>
 <!-- radio buttons -->
 <div class="radio">
   <div class="form-check form-check-inline">
@@ -30,17 +30,37 @@
 <div class="picker">
   <div class="picker-window"></div>
   <ul class="picker-route">
-    <%for(let i=0 ; i< numberOfAvailablePaths ; i++){%>
+    <%if(numberOfAvailablePaths==0){%>
+    <h1>عفوا, لا يوجد طرق متاحة</h1>
+    <%}else{ for(let i=0 ; i< numberOfAvailablePaths ; i++){let
+    pathLength=data[i].length%>
+    <%if(currentURL=="/webVersion/result/orderByDistance"){%>
     <form
-      action="/webVersion/result/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+      action="/webVersion/result/orderByDistance/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
       method="post"
+      name="detailsForm"
     >
-      <button class="route-btn btn btn-lg btn-primary">
-        <li>طريق رقم <%=routeNumber%></li>
+      <button class="route-btn btn btn-primary">
+        <h1 class="route-heading">
+          طريق رقم <%=routeNumber%> , المسافة
+          :<%=data[i][pathLength-1].totalDistance%> كم
+        </h1>
       </button>
     </form>
-
-    <% routeNumber ++ %> <%}%>
+    <%}else if(currentURL=="/webVersion/result/orderByCost"){%>
+    <form
+      action="/webVersion/result/orderByCost/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+      method="post"
+      name="detailsForm"
+    >
+      <button class="route-btn btn btn-primary">
+        <h1 class="route-heading">
+          طريق رقم <%=routeNumber%> , السعر
+          :<%=data[i][pathLength-1].totalCost%> جنيه
+        </h1>
+      </button>
+    </form>
+    <%}%> <% routeNumber ++ %> <%}%> <%}%>
   </ul>
 </div>
 

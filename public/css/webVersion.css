@@ -91,6 +91,11 @@ input[type="text"]{
    width: 20px;
    height: 20px;
 }
+#inlineRadio3{
+  accent-color: rgb(118, 154, 160);
+  width: 20px;
+  height: 20px;
+}
 .result-btn{
    background-color: transparent;
    border-color: rgb(118, 154, 160);

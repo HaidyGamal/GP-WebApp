@@ -4,13 +4,15 @@
 <!-- body -->
 <!-- <h1>(your path in details)</h1> -->
 <ul>
-  <%for(let i = 0 ; i < numberOfPathStops ; i++){%>
-  <%if(routes[id-1][i].lineNumber != undefined){%>
-  <li><%=routes[id-1][i].name%> (خط رقم : <%=routes[id-1][i].lineNumber%>)</li>
-  <%}else{%>
-  <li><%=routes[id-1][i].name%> (ميكروباص)</li>
-  <%}%> <%}%>
-  <li><%=lastStop%></li>
+  <%for(let i = 0; i < data[id-1].length; i++) {%>
+  <%if(data[id-1][i].transportationType == "bus"){%>
+  <%if(data[id-1][i+1].lineNumber == data[id-1][i].lineNumber){%>
+  <%data[id-1][i+1].name = data[id-1][i].name%> <%}else{%> اركب اتوبيس (خط رقم:
+  <%=data[id-1][i].lineNumber%>) من <%=data[id-1][i].name%> -> <%}%> <%}else
+  if(data[id-1][i].transportationType == "microbus"){%> انزل
+  <%=data[id-1][i].name%> واركب ميكروباص <%= data[id-1][i].lineNumber%> ->
+  <%}else if(data[id-1][i].transportationType == undefined){%> انزل
+  <%=data[id-1][i].name%> <%}%> <%}%>
 </ul>
 <div class="buttons">
   <a href="/resultDetails/liveLocation" class="btn btn-lg live-btn btn-danger"

@@ -3,7 +3,7 @@
 <!-- body -->
 <div class="main-section">
   <div class="custom-card">
-    <form action="/webVersion/result" method="post" autocomplete="off">
+    <form action="/webVersion/result" method="post" autocomplete="off" name="availablePathsForm" onsubmit="select()">
       <h1 class="">طريقك</h1>
       <!-- location -->
       <div class="autocomplete" style="width: 300px">
@@ -27,7 +27,7 @@
       </div>
       <!-- end Of destination -->
 
-      <!-- Cost Or Time -->
+      <!-- Cost Or Time Or Distance-->
       <div class="radio">
         <div class="form-check form-check-inline">
           <input
@@ -49,6 +49,16 @@
           />
           <label class="form-check-label" for="inlineRadio2">Time</label>
         </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio3"
+            value="option3"
+          />
+          <label class="form-check-label" for="inlineRadio3">Distance</label>
+        </div>
       </div>
       <!-- end of cost or time -->
 
@@ -69,3 +79,4 @@
 <script src="seed.js"></script>
 <script src="seed2.js"></script>
 <script src="/js/blindmode.js"></script>
+<script src="/js/result.js"></script>
