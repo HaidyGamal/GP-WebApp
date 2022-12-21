@@ -203,6 +203,9 @@ input[type=submit] {
   background-color: green;
   color: white;
 }
+.invalid-feedback{
+  color: rgb(255, 251, 251);
+}
 /* end of blind mode button */
 /* media queries */
 @media (min-width:320px)  {

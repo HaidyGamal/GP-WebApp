@@ -1,29 +1,31 @@
 <%layout('layouts/boilerplate.ejs')%>
 <link href="/css/webVersion.css" rel="stylesheet" type="text/css" />
 <!-- body -->
-<div class="main-section">
+<div class="main-section ">
   <div class="custom-card">
-    <form action="/webVersion/result" method="post" autocomplete="off" name="availablePathsForm" onsubmit="select()">
-      <h1 class="">طريقك</h1>
+    <form action="/webVersion/result" method="post" autocomplete="off" name="availablePathsForm" onsubmit="select()" class="needs-validation" novalidate >
+      <h1 >حدد وجهتك</h1>
       <!-- location -->
       <div class="autocomplete" style="width: 300px">
-        <input id="myInput" type="text" name="Location" list="Location" placeholder="Location" />
+        <input id="myInput" type="text" name="Location" list="Location" placeholder="نقطة الانطلاق" class="form-control" required/>
         <datalist id="Location">
           <%for(let i = 0  ; i<stops.length ; i++){%>
             <option value="<%=stops[i]%>"></option>
             <%}%>
         </datalist>
+        <div class="invalid-feedback">برجاء تحديد نقطة الانطلاق</div>
       </div>
       <!-- end Of loation-->
 
       <!-- destination -->
       <div class="autocomplete" style="width: 300px">
-        <input id="myInput1" type="text" name="Destination" list="Destination" placeholder="Destination"/>
+        <input id="myInput1" type="text" name="Destination" list="Destination" placeholder="الوجهة" class="form-control" required/>
         <datalist id="Destination">
           <%for(let i = 0  ; i<stops.length ; i++){%>
             <option value="<%=stops[i]%>"></option>
             <%}%>
         </datalist>
+        <div class="invalid-feedback">برجاء تحديد الوجهة</div>
       </div>
       <!-- end Of destination -->
 
@@ -37,9 +39,9 @@
             id="inlineRadio1"
             value="option1"
           />
-          <label class="form-check-label" for="inlineRadio1">Cost</label>
+          <label class="form-check-label" for="inlineRadio1">السعر</label>
         </div>
-        <div class="form-check form-check-inline">
+        <!-- <div class="form-check form-check-inline">
           <input
             class="form-check-input"
             type="radio"
@@ -47,8 +49,8 @@
             id="inlineRadio2"
             value="option2"
           />
-          <label class="form-check-label" for="inlineRadio2">Time</label>
-        </div>
+          <label class="form-check-label" for="inlineRadio2">الوقت</label>
+        </div> -->
         <div class="form-check form-check-inline">
           <input
             class="form-check-input"
@@ -56,8 +58,9 @@
             name="inlineRadioOptions"
             id="inlineRadio3"
             value="option3"
+            required
           />
-          <label class="form-check-label" for="inlineRadio3">Distance</label>
+          <label class="form-check-label" for="inlineRadio3">المسافة</label>
         </div>
       </div>
       <!-- end of cost or time -->
@@ -68,6 +71,9 @@
       </div>
       <!-- end of submit button  -->
     </form>
+    <!-- bootstrap form -->
+    
+    <!-- end of bootstrap form -->
   </div>
   <!-- blind mode button -->
   <button class="blind-btn">
@@ -76,6 +82,35 @@
   <!-- end of blind mode button -->
 </div>
 <!-- End Of main Section -->
+<!-- client-side validation -->
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
+</script>
 <script src="seed.js"></script>
 <script src="seed2.js"></script>
 <script src="/js/blindmode.js"></script>

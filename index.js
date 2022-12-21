@@ -180,11 +180,12 @@ app.post(
     };
     // to check if you are in the /showResult/orderByDistance/ path
     let currentURL = "/webVersion/result/orderByCost"
+    let currentOrder = "طريقك مرتب بحسب السعر"
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
       let routeNumber = 1
-      res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL});
+      res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder});
     }).catch(function (error) {
       console.error(error);
     });
@@ -234,11 +235,12 @@ app.post(
     };
     // to check if you are in the /showResult/orderByDistance/ path
     let currentURL = "/webVersion/result/orderByDistance"
+    let currentOrder = "طريقك مرتب بحسب المسافة"
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
       let routeNumber = 1
-      res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL});
+      res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL, currentOrder});
     }).catch(function (error) {
       console.error(error);
     });

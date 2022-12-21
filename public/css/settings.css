@@ -13,9 +13,45 @@ a{
 }
 .custom-card{
    padding-top: 7em;
-    background-color: rgb(189, 189, 189);
+    background-color: rgba(189, 189, 191, 0.349);
     min-width: 50vw;
     min-height: 50vh;
     text-align: center;
     border-radius:10px;
 }
+.animated-settings{
+    height: 300px;
+    display: flex;
+    align-items: flex-start;
+}
+ /* to increase the size of the toggle switch */
+/* Positioning the enlarged switch */
+
+/* .custom-switch > .custom-control-label {
+    padding-left: 1.75rem;
+    padding-bottom: 0.5rem;
+}
+
+
+
+.custom-switch > .custom-control-input:checked ~ .custom-control-label::after {
+    -webkit-transform: scale(2) translateX(0.75rem);
+    transform: scale(2) translateX(0.75rem);
+}
+
+
+
+.custom-switch > .custom-control-label::after {
+    left: -1.75rem;
+    transform: scale(2);
+}
+
+
+
+.custom-switch > .custom-control-label::before {
+    left: -1.50rem;
+    transform: scale(2);
+}
+.toggle-switch{
+    margin-top: 100px;
+} */
