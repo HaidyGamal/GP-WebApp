@@ -1,29 +1,30 @@
 body{
-    height: 100vh;
     display: flex;
+    height: 100vh;
     justify-content: center;
     align-items: center;
 }
 h1{
-    font-size: 65px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: 2.7rem;
+    font-size: 3.7rem;
+}
+p{
+    margin-bottom: 3.5rem;
+    font-size: 1.2rem;
 }
 .carousel-item{
-    background-color: rgb(189, 189, 189);
-    padding: 25px 25px 80px 25px;
-    border-radius: 20px;
+    width: 70rem;
+    height: 400px;
+    z-index: -1;
 }
-.carousel-item p{
-    width: 70%;
-}
-.carousel-item h2{
-   margin: 30px auto;
-}
-#carouselExampleFade{
-    text-align: center;
-    width: 70%;
-    
+.carousel-item::after{
+    position: absolute;
+    content: '';
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 1;
 }
