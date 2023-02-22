@@ -74,6 +74,19 @@ body{
  p{
    margin-top: 25px;
  }
+
+ #login-email::placeholder { /* Most modern browsers support this now. */
+ color: rgb(233, 0, 0);
+}
+#login-password::placeholder { /* Most modern browsers support this now. */
+  color: rgb(233, 0, 0);
+ }
+ #signup-email::placeholder { /* Most modern browsers support this now. */
+  color: rgb(233, 0, 0);
+ }
+ #signup-password::placeholder { /* Most modern browsers support this now. */
+   color: rgb(233, 0, 0);
+  }
  /* end of login popup styling */
  /* media queries */
  @media (min-width:320px)  {

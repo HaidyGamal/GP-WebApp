@@ -294,6 +294,13 @@ app.get(
         res.render('pages/settings.ejs');
     }
 )
+// account page
+app.get(
+  '/webVersion/settings/account',
+  (req, res)=>{
+      res.render('pages/account.ejs');
+  }
+)
 
 
 // listen on local host port

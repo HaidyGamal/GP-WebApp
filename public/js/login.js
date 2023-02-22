@@ -7,6 +7,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
     createUserWithEmailAndPassword,
     signOut,
     sendEmailVerification,
+    onAuthStateChanged,
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
   const firebaseConfig = {
@@ -29,102 +30,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
 
 
 
-
-
-const popup = document.querySelector('.popup');
-const loginButton = document.querySelector('#login');
-const signupButton = document.querySelector('#register');
-const popupBackground = document.querySelector('.popup-background');
-const content = document.querySelector('.content');
-const loginTab = document.querySelector('.login-tab');
-const signupTab = document.querySelector('.signup-tab');
-const loginForm = document.querySelector('.login-form');
-const signupForm = document.querySelector('.signup-form');
-const anchorLogin = document.querySelector('.anchor-login');
-const anchorSignup = document.querySelector('.anchor-signup');
-
-var loginTabClicked = false;
-var signupTabClicked = false;
-
-window.addEventListener('load', showPopup);
-window.addEventListener('load', showLoginTab);
-loginButton.addEventListener('click', cancelPopup);
-signupButton.addEventListener('click', verificationMessage);
-loginTab.addEventListener('click', showLoginTab);
-signupTab.addEventListener('click', showSignupTab);
-anchorLogin.addEventListener('click', showLoginTab);
-anchorSignup.addEventListener('click', showSignupTab);
-
-
-popup.style.display = 'none';
-popupBackground.style.display='none';
-
 function showPopup(){
+  popup.style.display = 'none';
+popupBackground.style.display='none';
     setTimeout(() => {
         popup.style.display='';
         popupBackground.style.display='';
     }, 2000);
 }
-function cancelPopup(e){
-   if(auth.currentUser.emailVerified == true){
-    var email = document.querySelector("#login-email").value;
-    var password = document.querySelector("#login-password").value;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        // console.log(auth.currentUser.emailVerified);
-        // alert(user.email + "login successfully");
-        // document.querySelector("#logout").style.display = "block";
-        popup.style.display = 'none';
-        popupBackground.style.display = 'none';
-        content.style.zIndex = '1';
-        e.preventDefault();
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error.code);
-        alert(errorCode.substring(5));
-      });
-   }else{
-    alert("please verify your email");
-   }
-}
-function verificationMessage(e){
-    var email = document.querySelector("#signup-email").value;
-    var password = document.querySelector("#signup-password").value;
-    var firstName = document.querySelector("#FisrtName").value;
-    var lastName = document.querySelector("#LastName").value;
-    var phoneNumber = document.querySelector("#PhoneNum").value;
-    // for new registration
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        // verification
-        sendEmailVerification(user).then(() => {
-          console.log("verification is sent");
-          alert("verification is sent");
-        });
-        console.log(user);
-        alert("Registration successfully");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        // alert(errorCode.substring(5));
-        if(email == "" || password=="" ||  firstName=="" || lastName=="" || phoneNumber==""){
-            alert("please fill in the required data");
-        }else if(errorCode.substring(5) == "missing-email"){
-            alert("Missing Email !");
-        }else if (errorCode.substring(5) == "email-already-in-use"){
-            alert("This Email is already signed up");
-        }else if (errorCode.substring(5) == "weak-password"){
-            alert("Weak Password !");
-        }
-      });
-}
 function showLoginTab(e){
     loginTabClicked = true;
     signupTabClicked = false;
@@ -147,3 +61,124 @@ function showSignupTab(e){
     }
     e.preventDefault();
 }
+const showApp = () => {
+  popup.style.display = 'none';
+  popupBackground.style.display = 'none';
+  content.style.zIndex = '1';
+  // e.preventDefault();
+}
+
+const loginEmailPassword = async (e) => {
+  var email = document.querySelector("#login-email").value;
+  var password = document.querySelector("#login-password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+    if(auth.currentUser.emailVerified == true){
+      popup.style.display = 'none';
+      popupBackground.style.display = 'none';
+      content.style.zIndex = '1';
+    }else{
+      alert("please verify your email");
+      e.preventDefault();
+    }
+  }
+  catch(error) {
+    // alert(`There was an error: ${error}`)
+    if(error.code.substring(5)=="invalid-email"){
+      loginEmailPlaceholder.setAttribute('placeholder', "Invalid Email");
+      loginEmailPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+    }else if(error.code.substring(5)=="internal-error"  || error.code.substring(5)=="wrong-password"){
+      loginPasswordPlaceholder.value = "";
+      loginPasswordPlaceholder.setAttribute('placeholder', "Wrong Password");
+      loginPasswordPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+    }
+  }
+}
+const createAccount = async () => {
+    var email = document.querySelector("#signup-email").value;
+    var password = document.querySelector("#signup-password").value;
+    var firstName = document.querySelector("#FisrtName").value;
+    var lastName = document.querySelector("#LastName").value;
+    var phoneNumber = document.querySelector("#PhoneNum").value;
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    sendEmailVerification(auth.currentUser);
+    alert("verification is sent, check your Email");
+    showPopup();
+  }
+  catch(error) {
+    alert(`There was an error: ${error}`)
+    if(error.code.substring(5)=="invalid-email" ||error.code.substring(5)=="missing-email" ){
+      signupEmailPlaceholder.setAttribute('placeholder', "Invalid Email");
+      signupEmailPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+    }else if(error.code.substring(5)=="internal-error"  ){
+      signupPasswordPlaceholder.value = "";
+      signupPasswordPlaceholder.setAttribute('placeholder', "Wrong Password");
+      signupPasswordPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+    }else if(firstName == "" || lastName=="" || phoneNumber==""){
+      firstName.style.borderColor = "rgb(194, 3, 3)";
+      lastName.style.borderColor = "rgb(194, 3, 3)";
+      lastName.style.borderColor = "rgb(194, 3, 3)";
+    }
+  } 
+}
+const monitorAuthState = async () => {
+  await onAuthStateChanged(auth, user => {
+    if (user.emailVerified == true) {
+      console.log(user)
+      showApp()
+    }
+    else {
+      showPopup()
+      // alert("logged out ")
+    }
+  })
+}
+const logout = async () => {
+  await signOut(auth);
+  alert("logged out");
+}
+monitorAuthState();
+
+
+
+
+
+const popup = document.querySelector('.popup');
+const loginButton = document.querySelector('#login');
+const signupButton = document.querySelector('#register');
+const popupBackground = document.querySelector('.popup-background');
+const content = document.querySelector('.content');
+const loginTab = document.querySelector('.login-tab');
+const signupTab = document.querySelector('.signup-tab');
+const loginForm = document.querySelector('.login-form');
+const signupForm = document.querySelector('.signup-form');
+const anchorLogin = document.querySelector('.anchor-login');
+const anchorSignup = document.querySelector('.anchor-signup');
+const logoutButton = document.querySelector('.logout');
+const loginEmailPlaceholder = document.querySelector('#login-email');
+const loginPasswordPlaceholder = document.querySelector('#login-password');
+const signupEmailPlaceholder = document.querySelector('#signup-email');
+const signupPasswordPlaceholder = document.querySelector('#signup-password');
+
+// const displayName = document.querySelector('.display-name');
+// const displayEmail = document.querySelector('.display-email');
+// const displayPhone = document.querySelector('.display-phone');
+// const userCred = document.querySelector('.user-cred');
+
+var loginTabClicked = false;
+var signupTabClicked = false;
+
+// window.addEventListener('load', showPopup);
+window.addEventListener('load', showLoginTab);
+loginButton.addEventListener('click', loginEmailPassword);
+signupButton.addEventListener('click', createAccount);
+loginTab.addEventListener('click', showLoginTab);
+signupTab.addEventListener('click', showSignupTab);
+anchorLogin.addEventListener('click', showLoginTab);
+anchorSignup.addEventListener('click', showSignupTab);
+logoutButton.addEventListener('click', logout);
+
+
