@@ -1,30 +1,56 @@
 <%layout('layouts/boilerplate.ejs')%>
 <link href="/css/webVersion.css" rel="stylesheet" type="text/css" />
 <!-- body -->
-<div class="main-section ">
+<div class="main-section">
   <div class="custom-card">
-    <form action="/webVersion/result" method="post" autocomplete="off" name="availablePathsForm" onsubmit="select()" class="needs-validation" novalidate >
-      <h1 >حدد وجهتك</h1>
+    <form
+      action="/webVersion/result"
+      method="post"
+      autocomplete="off"
+      name="availablePathsForm"
+      onsubmit="select()"
+      class="needs-validation"
+      novalidate
+    >
+      <h1>حدد وجهتك</h1>
       <!-- location -->
-      <div class="autocomplete" style="width: 300px">
-        <input id="myInput" type="text" name="Location" list="Location" placeholder="نقطة الانطلاق" class="form-control" required/>
-        <datalist id="Location">
-          <%for(let i = 0  ; i<stops.length ; i++){%>
-            <option value="<%=stops[i]%>"></option>
-            <%}%>
-        </datalist>
+      <div class="input-group mb-3" style="width: 300px">
+        <input
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+          id="myInput"
+          type="text"
+          name="Location"
+          list="Location"
+          placeholder="نقطة الانطلاق"
+          class="form-control"
+          required
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="current-location"
+          >
+            موقعك الحالي
+          </button>
+        </div>
         <div class="invalid-feedback">برجاء تحديد نقطة الانطلاق</div>
       </div>
-      <!-- end Of loation-->
+      <!-- end Of location-->
 
       <!-- destination -->
       <div class="autocomplete" style="width: 300px">
-        <input id="myInput1" type="text" name="Destination" list="Destination" placeholder="الوجهة" class="form-control" required/>
-        <datalist id="Destination">
-          <%for(let i = 0  ; i<stops.length ; i++){%>
-            <option value="<%=stops[i]%>"></option>
-            <%}%>
-        </datalist>
+        <input
+          id="myInput1"
+          type="text"
+          name="Destination"
+          list="Destination"
+          placeholder="الوجهة"
+          class="form-control"
+          required
+        />
+        <datalist id="Destination"> </datalist>
         <div class="invalid-feedback">برجاء تحديد الوجهة</div>
       </div>
       <!-- end Of destination -->
@@ -72,7 +98,7 @@
       <!-- end of submit button  -->
     </form>
     <!-- bootstrap form -->
-    
+
     <!-- end of bootstrap form -->
   </div>
   <!-- blind mode button -->
@@ -111,7 +137,9 @@
     );
   })();
 </script>
-<script src="seed.js"></script>
-<script src="seed2.js"></script>
+<!-- <script src="seed.js"></script>
+<script src="seed2.js"></script> -->
 <script src="/js/blindmode.js"></script>
 <script src="/js/result.js"></script>
+<script src="/js/googleMaps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw"></script>

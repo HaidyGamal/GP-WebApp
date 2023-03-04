@@ -29,31 +29,65 @@ app.get(
         res.render('pages/home.ejs');
     }
 );
-// Web Version Home
+// Web Version Home (ORIGINAL)
 app.get(
     '/webVersion',
     (req, res)=>{
-        let stops = [];
-        const options = {
-          method: 'GET',
-          url: 'https://samplepublictransportationsapi.onrender.com/',
-          headers: {
-            'Accept-Encoding': 'null'
-          }
-        };
-        axios.request(options).then(function (response) {
-          for(let i = 0 ; i<response.data.allNodes.length; i++){
-            stops.push(
-              response.data.allNodes[i].name
-            )
-          }
-          res.render('pages/webVersion.ejs', {stops : stops});
-        }).catch(function (error) {
-          console.error(error);
-        });
-        // res.render('pages/webVersion.ejs');
+        // let stops = [];
+        // const options = {
+        //   method: 'GET',
+        //   url: 'https://samplepublictransportationsapi.onrender.com/',
+        //   headers: {
+        //     'Accept-Encoding': 'null'
+        //   }
+        // };
+        // axios.request(options).then(function (response) {
+        //   for(let i = 0 ; i<response.data.allNodes.length; i++){
+        //     stops.push(
+        //       response.data.allNodes[i].name
+        //     )
+        //   }
+        //   res.render('pages/webVersion.ejs', {stops : stops});
+        // }).catch(function (error) {
+        //   console.error(error);
+        // });
+        res.render('pages/webVersion.ejs');
     }
 );
+// Web Version Home
+// app.get(
+//   '/webVersion',
+//   (req, res)=>{
+//       let stops = [];
+//       // let location = req.body.Location;
+//       let location ="العباسية";
+//       var config = {
+//         method: 'get',
+//         url: `https://maps.googleapis.com/maps/api/place/autocomplete/json`,
+//         headers: { },
+//         params: {
+//           'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
+//           'input': location
+//          }
+//       };
+      
+//       axios(config)
+//       .then(function (response) {
+//         console.log(req.body);
+//         console.log(JSON.stringify(response.data.predictions[0].description));
+//         for(let i = 0 ; i<JSON.stringify(response.data.predictions.length); i++){
+//                       stops.push(
+//                         JSON.stringify(response.data.predictions[i].description)
+//                       )
+//                     }
+//                     res.render('pages/webVersion.ejs', {stops : stops});
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+      
+//   }
+// );
 // contact us page
 app.get(
     '/webVersion/contact',
@@ -167,8 +201,10 @@ app.get(
 app.post(
   '/webVersion/result/orderByCost',
   (req , res)=>{
-    let location = req.body.Location
-    let destination = req.body.Destination
+    let location = req.body.Location.split('،')[0]
+    let destination = req.body.Destination.split('،')[0]
+    let loc = req.body.Location
+    let dest = req.body.Destination
     const options = {
       method: 'POST',
       url: 'https://samplepublictransportationsapi.onrender.com/orderByCost',
@@ -178,6 +214,46 @@ app.post(
       },
       data: `{"Location":"${location}","Destination":"${destination}"}`
     };
+    const locationLatLongConverter = {
+      method: 'get',
+        url: `https://maps.googleapis.com/maps/api/geocode/json`,
+        headers: { },
+        params: {
+          'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
+          'address': loc
+         }
+    }
+    console.log(loc);
+          axios(locationLatLongConverter)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data.results[0].geometry.location));
+        const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
+        const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
+        console.log(`Location: ${loc} , Latitude: ${latitude} , Longitude: ${longitude}`);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      const destinationLatLongConverter = {
+        method: 'get',
+          url: `https://maps.googleapis.com/maps/api/geocode/json`,
+          headers: { },
+          params: {
+            'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
+            'address': dest
+           }
+      }
+      console.log(dest);
+            axios(destinationLatLongConverter)
+        .then(function (response) {
+          // console.log(JSON.stringify(response.data.results[0].geometry.location));
+          const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
+          const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
+          console.log(`Destination: ${dest} , Latitude: ${latitude} , Longitude: ${longitude}`);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     // to check if you are in the /showResult/orderByDistance/ path
     let currentURL = "/webVersion/result/orderByCost"
     let currentOrder = "طريقك مرتب بحسب السعر"
@@ -222,8 +298,10 @@ app.post(
 app.post(
   '/webVersion/result/orderByDistance',
   (req , res)=>{
-    let location = req.body.Location
-    let destination = req.body.Destination
+    let location = req.body.Location.split('،')[0]
+    let destination = req.body.Destination.split('،')[0]
+    let loc = req.body.Location
+    let dest = req.body.Destination
     const options = {
       method: 'POST',
       url: 'https://samplepublictransportationsapi.onrender.com/orderByDistance',
@@ -233,6 +311,46 @@ app.post(
       },
       data: `{"Location":"${location}","Destination":"${destination}"}`
     };
+    const locationLatLongConverter = {
+      method: 'get',
+        url: `https://maps.googleapis.com/maps/api/geocode/json`,
+        headers: { },
+        params: {
+          'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
+          'address': loc
+         }
+    }
+    console.log(loc);
+          axios(locationLatLongConverter)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data.results[0].geometry.location));
+        const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
+        const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
+        console.log(`Location: ${loc} , Latitude: ${latitude} , Longitude: ${longitude}`);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      const destinationLatLongConverter = {
+        method: 'get',
+          url: `https://maps.googleapis.com/maps/api/geocode/json`,
+          headers: { },
+          params: {
+            'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
+            'address': dest
+           }
+      }
+      console.log(dest);
+            axios(destinationLatLongConverter)
+        .then(function (response) {
+          // console.log(JSON.stringify(response.data.results[0].geometry.location));
+          const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
+          const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
+          console.log(`Destination: ${dest} , Latitude: ${latitude} , Longitude: ${longitude}`);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     // to check if you are in the /showResult/orderByDistance/ path
     let currentURL = "/webVersion/result/orderByDistance"
     let currentOrder = "طريقك مرتب بحسب المسافة"
