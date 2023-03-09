@@ -3,7 +3,7 @@
 <link href="/css/liveLocation.css" rel="stylesheet" type="text/css" />
 <!-- body -->
 <!-- <h1>(location live tracker)</h1> -->
-<svg
+<!-- <svg
   class="animated animated-map"
   id="freepik_stories-location-search"
   xmlns="http://www.w3.org/2000/svg"
@@ -2506,8 +2506,16 @@
       ></feColorMatrix>
     </filter>
   </defs>
-</svg>
+</svg> -->
+<!-- map -->
+<div id="map"></div>
+<!-- end of map -->
 <div class="buttons">
   <button class="btn btn-lg back-btn btn-primary">تكرار</button>
   <button class="btn btn-lg back-btn btn-primary">ايقاف</button>
 </div>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw&callback=initMap&v=weekly"
+  defer
+></script>
+<script src="/js/googleMaps.js"></script>

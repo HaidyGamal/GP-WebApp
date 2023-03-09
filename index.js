@@ -51,6 +51,26 @@ app.get(
         // }).catch(function (error) {
         //   console.error(error);
         // });
+        // var config = {
+        //   method: 'get',
+        //   url: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=الحي&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
+        //   headers: { }
+        // };
+        
+        // axios(config)
+        // .then(function (response) {
+        //   console.log(JSON.stringify(response.data.candidates[0].formatted_address));
+        //   for(let i = 0 ; i<JSON.stringify(response.data.candidates.length); i++){
+        //        stops.push(
+        //               JSON.stringify(response.data.candidates[i].formatted_address)
+        //         )
+        //     }
+        //     res.render('pages/webVersion.ejs' , {stops : stops});
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
+        // res.render('pages/webVersion.ejs' , {stops : stops});
         res.render('pages/webVersion.ejs');
     }
 );
@@ -205,6 +225,7 @@ app.post(
     let destination = req.body.Destination.split('،')[0]
     let loc = req.body.Location
     let dest = req.body.Destination
+    // public Transportation guidance api
     const options = {
       method: 'POST',
       url: 'https://samplepublictransportationsapi.onrender.com/orderByCost',
@@ -214,6 +235,7 @@ app.post(
       },
       data: `{"Location":"${location}","Destination":"${destination}"}`
     };
+    // google maps api to convert the address from the input field to lat & long
     const locationLatLongConverter = {
       method: 'get',
         url: `https://maps.googleapis.com/maps/api/geocode/json`,
