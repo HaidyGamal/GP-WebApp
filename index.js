@@ -9,6 +9,8 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 // to use our API with the help of axios
 const axios = require("axios");
+// geocoder npm package
+const NodeGeocoder = require('node-geocoder');
 // making /views folder accesable from any path
 app.set('views', path.join(__dirname, '/views'));
 // to include EJS
@@ -217,79 +219,42 @@ app.get(
 //     }
 // );
 
-// orderByCost
+// orderByCost (Original)
 app.post(
   '/webVersion/result/orderByCost',
-  (req , res)=>{
+  async (req , res)=>{
     let location = req.body.Location.split('،')[0]
     let destination = req.body.Destination.split('،')[0]
-    let loc = req.body.Location
+    let loc = req.body.Location 
     let dest = req.body.Destination
     // public Transportation guidance api
-    const options = {
-      method: 'POST',
-      url: 'https://samplepublictransportationsapi.onrender.com/orderByCost',
-      headers: {
-        'content-type': 'application/json',
-        'Accept-Encoding': 'null'
-      },
-      data: `{"Location":"${location}","Destination":"${destination}"}`
-    };
-    // google maps api to convert the address from the input field to lat & long
-    const locationLatLongConverter = {
-      method: 'get',
-        url: `https://maps.googleapis.com/maps/api/geocode/json`,
-        headers: { },
-        params: {
-          'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
-          'address': loc
-         }
-    }
-    console.log(loc);
-          axios(locationLatLongConverter)
-      .then(function (response) {
-        // console.log(JSON.stringify(response.data.results[0].geometry.location));
-        const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
-        const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
-        console.log(`Location: ${loc} , Latitude: ${latitude} , Longitude: ${longitude}`);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      const destinationLatLongConverter = {
-        method: 'get',
-          url: `https://maps.googleapis.com/maps/api/geocode/json`,
-          headers: { },
-          params: {
-            'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
-            'address': dest
-           }
-      }
-      console.log(dest);
-            axios(destinationLatLongConverter)
-        .then(function (response) {
-          // console.log(JSON.stringify(response.data.results[0].geometry.location));
-          const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
-          const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
-          console.log(`Destination: ${dest} , Latitude: ${latitude} , Longitude: ${longitude}`);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        const options =  {
+          method: 'POST',
+          url: 'https://tawsila-api.onrender.com/orderByCost',
+          headers: {
+            'content-type': 'application/json',
+            'Accept-Encoding': 'null'
+          },
+          data: `{"Location":"${loc}","Destination":"${dest}"}`
+        };
     // to check if you are in the /showResult/orderByDistance/ path
     let currentURL = "/webVersion/result/orderByCost"
     let currentOrder = "طريقك مرتب بحسب السعر"
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
+      
       let routeNumber = 1
       res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder});
     }).catch(function (error) {
       console.error(error);
     });
     
+
   }
 )
+
+
 // orderByCost details
 app.post(
   '/webVersion/result/orderByCost/resultDetails/:id',
@@ -299,14 +264,14 @@ app.post(
     let destination = req.query.Destination
     const options = {
       method: 'POST',
-      url: 'https://samplepublictransportationsapi.onrender.com/orderByCost',
+      url: 'https://tawsila-api.onrender.com/orderByCost',
       headers: {
         'content-type': 'application/json',
         'Accept-Encoding': 'null'
       },
       data: `{"Location":"${location}","Destination":"${destination}"}`
     };
-    
+  
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
@@ -326,53 +291,13 @@ app.post(
     let dest = req.body.Destination
     const options = {
       method: 'POST',
-      url: 'https://samplepublictransportationsapi.onrender.com/orderByDistance',
+      url: 'https://tawsila-api.onrender.com/orderByDistance',
       headers: {
         'content-type': 'application/json',
         'Accept-Encoding': 'null'
       },
-      data: `{"Location":"${location}","Destination":"${destination}"}`
+      data: `{"Location":"${loc}","Destination":"${dest}"}`
     };
-    const locationLatLongConverter = {
-      method: 'get',
-        url: `https://maps.googleapis.com/maps/api/geocode/json`,
-        headers: { },
-        params: {
-          'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
-          'address': loc
-         }
-    }
-    console.log(loc);
-          axios(locationLatLongConverter)
-      .then(function (response) {
-        // console.log(JSON.stringify(response.data.results[0].geometry.location));
-        const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
-        const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
-        console.log(`Location: ${loc} , Latitude: ${latitude} , Longitude: ${longitude}`);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      const destinationLatLongConverter = {
-        method: 'get',
-          url: `https://maps.googleapis.com/maps/api/geocode/json`,
-          headers: { },
-          params: {
-            'key': 'AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw',
-            'address': dest
-           }
-      }
-      console.log(dest);
-            axios(destinationLatLongConverter)
-        .then(function (response) {
-          // console.log(JSON.stringify(response.data.results[0].geometry.location));
-          const latitude = JSON.stringify(response.data.results[0].geometry.location.lat);
-          const longitude = JSON.stringify(response.data.results[0].geometry.location.lng);
-          console.log(`Destination: ${dest} , Latitude: ${latitude} , Longitude: ${longitude}`);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     // to check if you are in the /showResult/orderByDistance/ path
     let currentURL = "/webVersion/result/orderByDistance"
     let currentOrder = "طريقك مرتب بحسب المسافة"
@@ -396,7 +321,7 @@ app.post(
     let destination = req.query.Destination
     const options = {
       method: 'POST',
-      url: 'https://samplepublictransportationsapi.onrender.com/orderByDistance',
+      url: 'https://tawsila-api.onrender.com/orderByDistance',
       headers: {
         'content-type': 'application/json',
         'Accept-Encoding': 'null'
@@ -445,3 +370,73 @@ app.get(
 
 // listen on local host port
 app.listen(3000,()=>{console.log('Listening on port 3000')});
+
+
+
+
+
+// to chain apis
+
+// function locAdressToLatLong() {
+//   return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw&address=${loc}`);
+// }
+
+// function destAdressToLatLong() {
+//   return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw&address=${dest}`);
+// }
+
+// function tawsilaApi() {
+//   return axios.post(
+//     `https://tawsila-api.onrender.com/orderByCost`,
+//     {
+//       Location: `30.02735999999999,31.2559448`,
+//       Destination: `30.0306686,31.232628`
+//     }
+//     );
+// }
+// const [locationCoordinates, destinationCoordinates, result] = await Promise.all([locAdressToLatLong(), destAdressToLatLong(), tawsilaApi()]);
+
+
+// Promise.all([locAdressToLatLong(), destAdressToLatLong()] , tawsilaApi())
+//   .then(function ([locationCoordinates, destinationCoordinates, result]) {
+//     var localatTemp = locationCoordinates.data.results[0].geometry.location.lat
+//     var locLongTmep = locationCoordinates.data.results[0].geometry.location.lng 
+//     var destLatTmep = destinationCoordinates.data.results[0].geometry.location.lat
+//     var destLongTmep  = destinationCoordinates.data.results[0].geometry.location.lng
+    
+//     let locationID=locationCoordinates.data.results[0].place_id;
+//     let destinationID=destinationCoordinates.data.results[0].place_id;
+    
+//     locLat= localatTemp;
+//     locLong = locLongTmep;
+//     destLat = destLatTmep;
+//     destLong = destLongTmep;
+//     console.log(locationCoordinates.data.results[0].geometry.location_type)
+//     console.log(destinationCoordinates.data.results[0].geometry.location_type)
+    
+//     const options =  {
+//               method: 'POST',
+//               url: 'https://tawsila-api.onrender.com/orderByCost',
+//               headers: {
+//                 'content-type': 'application/json',
+//                 'Accept-Encoding': 'null'
+//               },
+//               data: {Location:`${locLat},${locLong}`,Destination:`${destLat},${destLong}`}
+//             };
+            
+             
+//              console.log(localatTemp ,locLongTmep)
+//     console.log(destLatTmep ,destLongTmep )
+//         // to check if you are in the /showResult/orderByDistance/ path
+//         let currentURL = "/webVersion/result/orderByCost"
+//         let currentOrder = "طريقك مرتب بحسب السعر"
+//         axios.request(options).then(function (response) {
+//           // console.log(locLat)
+//           let numberOfAvailablePaths = response.data.length
+//           let data = response.data
+//           let routeNumber = 1
+//           res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder});
+//         }).catch(function (error) {
+//           console.error(error);
+//         });
+//   });

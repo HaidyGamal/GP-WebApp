@@ -3,6 +3,8 @@ let autocompleteDest ;
 
 const currentLocButton = document.querySelector("#current-location");
 const locationInputField = document.querySelector("#myInput");
+const destinationInputField = document.querySelector("#myInput1");
+const submitButton = document.querySelector(".result-btn");
 currentLocButton.addEventListener('click', getCurrentLocation)
 
 function initialize(){
@@ -31,6 +33,8 @@ function takeInput(){
     console.log(dest);
     console.log(`Location lat ${autocompleteLoc.getPlace().geometry.location.lat()} | Location long ${autocompleteLoc.getPlace().geometry.location.lng()}`);
     console.log(`Destination lat ${autocompleteDest.getPlace().geometry.location.lat()} | Destination long ${autocompleteDest.getPlace().geometry.location.lng()}`);
+    locationInputField.value = `${autocompleteLoc.getPlace().geometry.location.lat()},${autocompleteLoc.getPlace().geometry.location.lng()}`;
+    destinationInputField.value = `${autocompleteDest.getPlace().geometry.location.lat()},${autocompleteDest.getPlace().geometry.location.lng()}`
     
 }
 
@@ -81,8 +85,32 @@ function initMap() {
       position: uluru,
       map: map,
     });
-  }
 
-window.addEventListener("load", takeInput);
+    // Get user's location
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        console.log(`Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`);
+
+        // Set marker's position.
+        marker.setPosition({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+
+        // Center map to user's position.
+        map.panTo({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      },
+      err => alert(`Error (${err.code}): ${getPositionErrorMessage(err.code)}`)
+    );
+  } else {
+    alert('Geolocation is not supported by your browser.');
+  }
+  }
+submitButton.addEventListener("click", takeInput);
 window.addEventListener("load", initialize);
+window.addEventListener("load", initMap);
 // window.addEventListener("load", autocomplete);
