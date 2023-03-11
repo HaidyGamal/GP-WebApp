@@ -77,39 +77,39 @@ function initMap() {
     const uluru = { lat: 29.9778969, lng: 30.9345641 };
     // The map, centered at Uluru
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom:19,
-      center: uluru,
+        zoom:19,
+        center: uluru,
     });
     // The marker, positioned at Uluru
     const marker = new google.maps.Marker({
-      position: uluru,
-      map: map,
+        position: uluru,
+        map: map,
     });
 
     // Get user's location
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      position => {
+    if ('geolocation' in navigator) {
+    navigator.geolocation.watchPosition(
+        position => {
         console.log(`Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`);
 
         // Set marker's position.
         marker.setPosition({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
         });
 
         // Center map to user's position.
         map.panTo({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
         });
-      },
-      err => alert(`Error (${err.code}): ${getPositionErrorMessage(err.code)}`)
+        },
+        err => alert(`Error (${err.code}): ${getPositionErrorMessage(err.code)}`)
     );
-  } else {
-    alert('Geolocation is not supported by your browser.');
-  }
-  }
+    } else {
+        alert('Geolocation is not supported by your browser.');
+    }
+}
 submitButton.addEventListener("click", takeInput);
 window.addEventListener("load", initialize);
 window.addEventListener("load", initMap);
