@@ -5,6 +5,7 @@ const currentLocButton = document.querySelector("#current-location");
 const locationInputField = document.querySelector("#myInput");
 const destinationInputField = document.querySelector("#myInput1");
 const submitButton = document.querySelector(".result-btn");
+const liveLocation = document.querySelector(".live-location");
 currentLocButton.addEventListener('click', getCurrentLocation)
 
 function initialize() {
@@ -77,11 +78,26 @@ function initMap() {
     // Get current location
     navigator.geolocation.watchPosition(function (position) {
         const currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+        // convert lat & long to address
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw&language=ar`, {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(function (response) {
+                        return response.json()
+                    })
+                    .then(function (json) {
+                        let currentAddress1 = json.results[3].formatted_address.split('،')[0]
+                        let currentAddress2 = json.results[3].formatted_address.split('،')[1]
+                        liveLocation.innerHTML=` انت الان في ${currentAddress1} - ${currentAddress2}`;
+                        
+                    })
+        
         // Create map centered on current location
         map = new google.maps.Map(document.getElementById("map"), {
             center: currentLocation,
-            zoom: 14,
+            zoom: 19,
         });
 
         // Create directions service and renderer

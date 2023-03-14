@@ -29,6 +29,14 @@ body{
    height: 30rem;
   }
   #map {
-  height: 400px; /* The height is 400 pixels */
-  width: 600px; /* The width is the width of the web page */
+  height: 25rem; /* The height is 400 pixels */
+  width: 50rem; /* The width is the width of the web page */
+}
+.live-tracking{
+   display:flex;
+   justify-content: center;
+   padding-top: 1rem;
+}
+.live-location{
+   font-size: 2rem;
 }
