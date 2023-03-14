@@ -36,7 +36,7 @@
     pathLength=data[i].length%>
     <%if(currentURL=="/webVersion/result/orderByDistance"){%>
     <form
-      action="/webVersion/result/orderByDistance/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+      action="/webVersion/result/orderByDistance/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>&LocationWalk=<%=locWalkingDistance%>&DestinationWalk=<%=destWalkingDistance%>"
       method="post"
       name="detailsForm"
     >
@@ -49,7 +49,7 @@
     </form>
     <%}else if(currentURL=="/webVersion/result/orderByCost"){%>
     <form
-      action="/webVersion/result/orderByCost/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+      action="/webVersion/result/orderByCost/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>&LocationWalk=<%=locWalkingDistance%>&DestinationWalk=<%=destWalkingDistance%>"
       method="post"
       name="detailsForm"
     >

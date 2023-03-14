@@ -32,14 +32,17 @@ function takeInput() {
     var dest = document.getElementById('myInput1').value;
     console.log(loc);
     console.log(dest);
-    console.log(`Location lat ${autocompleteLoc.getPlace().geometry.location.lat()} | Location long ${autocompleteLoc.getPlace().geometry.location.lng()}`);
-    console.log(`Destination lat ${autocompleteDest.getPlace().geometry.location.lat()} | Destination long ${autocompleteDest.getPlace().geometry.location.lng()}`);
+    let locationLat = autocompleteLoc.getPlace().geometry.location.lat();
+    let locationLong = autocompleteLoc.getPlace().geometry.location.lng();
+    let destinationLat = autocompleteDest.getPlace().geometry.location.lat();
+    let destinationLong = autocompleteDest.getPlace().geometry.location.lng()
+    console.log(`Location lat ${locationLat} | Location long ${locationLong}`);
+    console.log(`Destination lat ${destinationLat} | Destination long ${destinationLong}`);
     locationInputField.value = `${autocompleteLoc.getPlace().geometry.location.lat()},${autocompleteLoc.getPlace().geometry.location.lng()}`;
     destinationInputField.value = `${autocompleteDest.getPlace().geometry.location.lat()},${autocompleteDest.getPlace().geometry.location.lng()}`
     localStorage.setItem('DestinationLatitude', autocompleteDest.getPlace().geometry.location.lat());
     localStorage.setItem('DestinationLongitude', autocompleteDest.getPlace().geometry.location.lng());
-}
-
+    }
 function getCurrentLocation() {
     if (navigator.geolocation) {
         console.log("geo supported")
