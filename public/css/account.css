@@ -2,6 +2,7 @@ body{
     display: flex;
     height: 100vh;
     align-items: center;
+    justify-content: center;
 }
 .hide{
     display: none;
@@ -12,6 +13,8 @@ body{
     border-color: rgb(194, 3, 3);
     color: rgb(194, 3, 3);
     margin: 30px auto;
+    padding: 2rem 5rem;
+    font-size: 1.4rem;
 }
 .user-cred{
     margin-left: 2rem;

@@ -288,6 +288,7 @@ app.post(
         if(nearbyLocations[i].distance == 0){
           newLocationLat = nearbyLocations[i].latitude;
           newLocationLong = nearbyLocations[i].longitude;
+          location = `${newLocationLat},${newLocationLong}`
           locName = nearbyLocations[i].name
           // search in the orderByCost query using them by replacing only the loc
           const options =  {
@@ -315,6 +316,7 @@ app.post(
         }else if(nearbyLocations[i].distance != 0){
           newLocationLat = nearbyLocations[0].latitude
           newLocationLong = nearbyLocations[0].longitude
+          location = `${newLocationLat},${newLocationLong}`
           locName = nearbyLocations[0].name
           locWalkingDistance = nearbyLocations[0].distance
           // search in the orderByCost query using them by replacing only the loc
@@ -346,13 +348,59 @@ app.post(
         if(nearbyDestinations[i].distance == 0){
           newDestinationLat = nearbyDestinations[i].latitude;
           newDestinationLong = nearbyDestinations[i].longitude;
+          destination = `${newDestinationLat},${newDestinationLong}`
           destName = nearbyDestinations[i].name
+          // search in the orderByCost query using them by replacing only the dest
+          const options =  {
+            method: 'POST',
+            url: 'https://tawsila-api.onrender.com/orderByCost',
+            headers: {
+              'content-type': 'application/json',
+              'Accept-Encoding': 'null'
+            },
+            data: `{"Location":"${loc}","Destination":"${newDestinationLat},${newDestinationLong}"}`
+          };
+      // to check if you are in the /showResult/orderByCost/ path
+      let currentURL = "/webVersion/result/orderByCost"
+      let currentOrder = "طريقك مرتب بحسب السعر"
+      axios.request(options).then(function (response) {
+        let numberOfAvailablePaths = response.data.length
+        let data = response.data
+        
+        let routeNumber = 1
+        res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+      }).catch(function (error) {
+        console.error(error);
+      });
           break;
         }else if(nearbyDestinations[i].distance != 0){
           newDestinationLat = nearbyDestinations[0].latitude
           newDestinationLong = nearbyDestinations[0].longitude
+          destination = `${newDestinationLat},${newDestinationLong}`
           destName = nearbyDestinations[0].name
           destWalkingDistance = nearbyDestinations[0].distance
+          // search in the orderByCost query using them by replacing only the dest
+          const options =  {
+            method: 'POST',
+            url: 'https://tawsila-api.onrender.com/orderByCost',
+            headers: {
+              'content-type': 'application/json',
+              'Accept-Encoding': 'null'
+            },
+            data: `{"Location":"${loc}","Destination":"${newDestinationLat},${newDestinationLong}"}`
+          };
+      // to check if you are in the /showResult/orderByCost/ path
+      let currentURL = "/webVersion/result/orderByCost"
+      let currentOrder = "طريقك مرتب بحسب السعر"
+      axios.request(options).then(function (response) {
+        let numberOfAvailablePaths = response.data.length
+        let data = response.data
+        
+        let routeNumber = 1
+        res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+      }).catch(function (error) {
+        console.error(error);
+      });
         }
       }
       
@@ -393,7 +441,8 @@ app.post(
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
-      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data, locationWalk, destinationWalk});
+      
+      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data});
     }).catch(function (error) {
       console.error(error);
     });
@@ -466,6 +515,7 @@ app.post(
         if(nearbyLocations[i].distance == 0){
           newLocationLat = nearbyLocations[i].latitude;
           newLocationLong = nearbyLocations[i].longitude;
+          location = `${newLocationLat},${newLocationLong}`
           locName = nearbyLocations[i].name
           // search in the orderByCost query using them by replacing only the loc
           const options =  {
@@ -493,6 +543,7 @@ app.post(
         }else if(nearbyLocations[i].distance != 0){
           newLocationLat = nearbyLocations[0].latitude
           newLocationLong = nearbyLocations[0].longitude
+          location = `${newLocationLat},${newLocationLong}`
           locName = nearbyLocations[0].name
           locWalkingDistance = nearbyLocations[0].distance
           // search in the orderByCost query using them by replacing only the loc
@@ -524,13 +575,59 @@ app.post(
         if(nearbyDestinations[i].distance == 0){
           newDestinationLat = nearbyDestinations[i].latitude;
           newDestinationLong = nearbyDestinations[i].longitude;
+          destination = `${newDestinationLat},${newDestinationLong}`
           destName = nearbyDestinations[i].name
+                   // search in the orderByDistance query using them by replacing only the dest
+                   const options =  {
+                    method: 'POST',
+                    url: 'https://tawsila-api.onrender.com/orderByDistance',
+                    headers: {
+                      'content-type': 'application/json',
+                      'Accept-Encoding': 'null'
+                    },
+                    data: `{"Location":"${loc}","Destination":"${newDestinationLat},${newDestinationLong}"}`
+                  };
+              // to check if you are in the /showResult/orderByDistance/ path
+              let currentURL = "/webVersion/result/orderByDistance"
+              let currentOrder = "طريقك مرتب بحسب المسافة"
+              axios.request(options).then(function (response) {
+                let numberOfAvailablePaths = response.data.length
+                let data = response.data
+                
+                let routeNumber = 1
+                res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+              }).catch(function (error) {
+                console.error(error);
+              });
           break;
         }else if(nearbyDestinations[i].distance != 0){
           newDestinationLat = nearbyDestinations[0].latitude
           newDestinationLong = nearbyDestinations[0].longitude
+          destination = `${newDestinationLat},${newDestinationLong}`
           destName = nearbyDestinations[0].name
           destWalkingDistance = nearbyDestinations[0].distance
+          // search in the orderByDistance query using them by replacing only the dest
+          const options =  {
+            method: 'POST',
+            url: 'https://tawsila-api.onrender.com/orderByDistance',
+            headers: {
+              'content-type': 'application/json',
+              'Accept-Encoding': 'null'
+            },
+            data: `{"Location":"${loc}","Destination":"${newDestinationLat},${newDestinationLong}"}`
+          };
+      // to check if you are in the /showResult/orderByDistance/ path
+      let currentURL = "/webVersion/result/orderByDistance"
+      let currentOrder = "طريقك مرتب بحسب المسافة"
+      axios.request(options).then(function (response) {
+        let numberOfAvailablePaths = response.data.length
+        let data = response.data
+        
+        let routeNumber = 1
+        res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+      }).catch(function (error) {
+        console.error(error);
+      });
         }
       }
       

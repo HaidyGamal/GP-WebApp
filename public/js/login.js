@@ -86,11 +86,11 @@ const loginEmailPassword = async (e) => {
   catch(error) {
     // alert(`There was an error: ${error}`)
     if(error.code.substring(5)=="invalid-email"){
-      loginEmailPlaceholder.setAttribute('placeholder', "Invalid Email");
+      loginEmailPlaceholder.setAttribute('placeholder', "بريد الكتروني خاطئ");
       loginEmailPlaceholder.style.borderColor = "rgb(194, 3, 3)";
     }else if(error.code.substring(5)=="internal-error"  || error.code.substring(5)=="wrong-password"){
       loginPasswordPlaceholder.value = "";
-      loginPasswordPlaceholder.setAttribute('placeholder', "Wrong Password");
+      loginPasswordPlaceholder.setAttribute('placeholder', "باسورد خاطئ");
       loginPasswordPlaceholder.style.borderColor = "rgb(194, 3, 3)";
     }
   }
@@ -109,18 +109,38 @@ const createAccount = async () => {
     showPopup();
   }
   catch(error) {
-    alert(`There was an error: ${error}`)
-    if(error.code.substring(5)=="invalid-email" ||error.code.substring(5)=="missing-email" ){
-      signupEmailPlaceholder.setAttribute('placeholder', "Invalid Email");
+    // alert(`There was an error: ${error}`)
+    if(error == "FirebaseError: Firebase: Error (auth/invalid-email)."){
+      signupEmailPlaceholder.setAttribute('placeholder', "برجاء ادخال بريد الكتروني");
+      signupEmailPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      signupPasswordPlaceholder.value = "";
+      signupPasswordPlaceholder.setAttribute('placeholder', "برجاء ادخال باسورد");
+      signupPasswordPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      firstNamePlaceholder.setAttribute('placeholder', "برجاء كتابة الاسم الاول");
+      lastNamePlaceholder.setAttribute('placeholder', "برجاء كتابة الكنية");
+      phoneNumberPlaceholder.setAttribute('placeholder', "برجاء كتابة رقم الموبايل");
+      firstNamePlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      lastNamePlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      phoneNumberPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+    }
+    else if(error.code.substring(5)=="invalid-email" ||error.code.substring(5)=="missing-email" ){
+      signupEmailPlaceholder.setAttribute('placeholder', "بريد الكتروني غير صحيح");
       signupEmailPlaceholder.style.borderColor = "rgb(194, 3, 3)";
     }else if(error.code.substring(5)=="internal-error"  ){
       signupPasswordPlaceholder.value = "";
-      signupPasswordPlaceholder.setAttribute('placeholder', "Wrong Password");
+      signupPasswordPlaceholder.setAttribute('placeholder', "برجاء ادخال باسورد  ");
       signupPasswordPlaceholder.style.borderColor = "rgb(194, 3, 3)";
-    }else if(firstName == "" || lastName=="" || phoneNumber==""){
-      firstName.style.borderColor = "rgb(194, 3, 3)";
-      lastName.style.borderColor = "rgb(194, 3, 3)";
-      lastName.style.borderColor = "rgb(194, 3, 3)";
+    }else if(error=="FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password)."){
+      signupPasswordPlaceholder.value = "";
+      signupPasswordPlaceholder.setAttribute('placeholder', " يجب ان يتكون الباسورد من 6 خانات على الاقل");
+      signupPasswordPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+    }else if(firstName== "" || lastName=="" || phoneNumber==""){
+      firstNamePlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      lastNamePlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      phoneNumberPlaceholder.style.borderColor = "rgb(194, 3, 3)";
+      firstNamePlaceholder.setAttribute('placeholder', "برجاء كتابة الاسم الاول");
+      lastNamePlaceholder.setAttribute('placeholder', "برجاء كتابة الكنية");
+      phoneNumberPlaceholder.setAttribute('placeholder', "برجاء كتابة رقم الموبايل");
     }
   } 
 }
@@ -162,6 +182,9 @@ const loginEmailPlaceholder = document.querySelector('#login-email');
 const loginPasswordPlaceholder = document.querySelector('#login-password');
 const signupEmailPlaceholder = document.querySelector('#signup-email');
 const signupPasswordPlaceholder = document.querySelector('#signup-password');
+const firstNamePlaceholder = document.querySelector("#FisrtName");
+const lastNamePlaceholder = document.querySelector("#LastName");
+const phoneNumberPlaceholder = document.querySelector("#PhoneNum");
 
 // const displayName = document.querySelector('.display-name');
 // const displayEmail = document.querySelector('.display-email');

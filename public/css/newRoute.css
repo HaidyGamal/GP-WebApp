@@ -87,6 +87,15 @@ body{
  #signup-password::placeholder { /* Most modern browsers support this now. */
    color: rgb(233, 0, 0);
   }
+ #FisrtName::placeholder { /* Most modern browsers support this now. */
+    color: rgb(233, 0, 0);
+   }
+ #LastName::placeholder { /* Most modern browsers support this now. */
+    color: rgb(233, 0, 0);
+   }
+ #PhoneNum::placeholder { /* Most modern browsers support this now. */
+    color: rgb(233, 0, 0);
+   }
  /* end of login popup styling */
  /* media queries */
  @media (min-width:320px)  {
