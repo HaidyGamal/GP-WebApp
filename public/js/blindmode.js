@@ -2,7 +2,8 @@ const blindButton = document.querySelector('.blind-btn');
 const locInputField = document.querySelector('#myInput');
 const destInputField = document.querySelector('#myInput1');
 let clicked =1 ;
-window. order;
+// window.order = 1;
+localStorage.setItem('order', 3);
 const radioButtonCost = document.querySelector('#inlineRadio1');
 const radioButtonDistance = document.querySelector('#inlineRadio3');
 const resultButton = document.querySelector('.result-btn');
@@ -686,23 +687,25 @@ if (annyang) {
       radioButtonCost.click();
       utter.text ="اذا كنت ترغب في عرض الطريق مرتبا بحسب السعر قل: نعم";
       synth.speak(utter);
-       order =1;
+      //  window.order =1;
+      localStorage.setItem('order', 1);
     },
     'المسافه':()=>{
       radioButtonDistance.click();
       utter.text ="اذا كنت ترغب في عرض الطريق مرتبا بحسب المسافة قل: نعم";
       synth.speak(utter);
-       order = 0;
+      //  window.order = 0;
+      localStorage.setItem('order', 0);
     },
     'نعم':()=>{
       resultButton.click();
-      if(order == 1){
+      if(localStorage.getItem('order') == 1){
         utter.text ="طريقك مرتب بحسب السعر";
         synth.speak(utter);
         
         
 
-      }else if(order == 0 ){
+      }else if(localStorage.getItem('order') == 0){
         utter.text ="طريقك مرتب بحسب المسافة";
         synth.speak(utter);
       }
