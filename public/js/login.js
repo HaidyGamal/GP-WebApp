@@ -9,6 +9,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
     sendEmailVerification,
     onAuthStateChanged,
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc, getDocs, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
 
   const firebaseConfig = {
     apiKey: "AIzaSyAb7HACiJd16gpmh-4uZz0m1bd6qmNRbjE",
@@ -26,7 +27,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
   const auth = getAuth();
 // end of firebase authentication
 
-
+// firestore
+const db = getFirestore(app);
 
 
 
@@ -101,7 +103,7 @@ const createAccount = async () => {
     var firstName = document.querySelector("#FisrtName").value;
     var lastName = document.querySelector("#LastName").value;
     var phoneNumber = document.querySelector("#PhoneNum").value;
-
+// create account
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     sendEmailVerification(auth.currentUser);
@@ -142,7 +144,25 @@ const createAccount = async () => {
       lastNamePlaceholder.setAttribute('placeholder', "برجاء كتابة الكنية");
       phoneNumberPlaceholder.setAttribute('placeholder', "برجاء كتابة رقم الموبايل");
     }
-  } 
+  }
+// save users in firestore DB
+try {
+  const usersRef = collection(db, "users");
+  const userDoc = doc(usersRef, email);
+  await setDoc(userDoc, {
+    FirstName: firstName,
+    LastName: lastName,
+    Phone: phoneNumber
+  });
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+// to read the data in firestore DB
+const querySnapshot = await getDocs(collection(db, "users"));
+querySnapshot.forEach((doc) => {
+  console.log(`${doc.id} => ${doc.data()}`);
+});
+
 }
 const monitorAuthState = async () => {
   await onAuthStateChanged(auth, user => {
