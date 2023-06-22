@@ -115,6 +115,7 @@ if (annyang) {
   }
 
 }else if(localStorage.getItem('order') == 0){
+    localStorage.setItem('order2', 0);
     const synth = window.speechSynthesis;
 let utter = new SpeechSynthesisUtterance("");
 // utter.text = "مرحبا";
