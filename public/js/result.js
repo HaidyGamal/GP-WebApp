@@ -97,6 +97,13 @@ function select()
         // disORcos.innerHTML="<h1>hi</h1>"
       
      }
+     else if(Time.checked==true)
+     {
+        document.availablePathsForm.action="/webVersion/result/orderByTime";
+        // document.detailsForm.action="/showResult/orderByDistance/details/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>"
+        // disORcos.innerHTML="<h1>hi</h1>"
+      
+     }
      else{
         document.availablePathsForm.action="";
      }

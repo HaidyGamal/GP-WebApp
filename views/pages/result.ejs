@@ -47,6 +47,19 @@
         </h1>
       </button>
     </form>
+    <%}else if(currentURL=="/webVersion/result/orderByTime"){%>
+    <form
+      action="/webVersion/result/orderByTime/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>&LocationWalk=<%=locWalkingDistance%>&DestinationWalk=<%=destWalkingDistance%>"
+      method="post"
+      name="detailsForm"
+    >
+      <button class="route-btn btn btn-primary">
+        <h1 class="route-heading">
+          طريق رقم <%=routeNumber%> , الوقت
+          :<%=data[i][pathLength-1].totalTime%> دقيقة
+        </h1>
+      </button>
+    </form>
     <%}else if(currentURL=="/webVersion/result/orderByCost"){%>
     <form
       action="/webVersion/result/orderByCost/resultDetails/<%=routeNumber%>?Location=<%=location%>&Destination=<%=destination%>&LocationWalk=<%=locWalkingDistance%>&DestinationWalk=<%=destWalkingDistance%>"

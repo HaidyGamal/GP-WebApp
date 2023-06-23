@@ -678,6 +678,230 @@ app.get(
         res.render('pages/liveLocation.ejs')
     }
 );
+// orderByTime
+app.post(
+  '/webVersion/result/orderByTime',
+  (req , res)=>{
+    let location = req.body.Location.split('،')[0]
+    let destination = req.body.Destination.split('،')[0]
+    let loc = req.body.Location
+    let dest = req.body.Destination
+    // **********************************************
+    // const options = {
+    //   method: 'POST',
+    //   url: 'https://tawsila-api.onrender.com/orderByDistance',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //     'Accept-Encoding': 'null'
+    //   },
+    //   data: `{"Location":"${loc}","Destination":"${dest}"}`
+    // };
+    // // to check if you are in the /showResult/orderByDistance/ path
+    // let currentURL = "/webVersion/result/orderByDistance"
+    // let currentOrder = "طريقك مرتب بحسب المسافة"
+    // axios.request(options).then(function (response) {
+    //   let numberOfAvailablePaths = response.data.length
+    //   let data = response.data
+    //   let routeNumber = 1
+    //   res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL, currentOrder});
+    // }).catch(function (error) {
+    //   console.error(error);
+    // });
+    // *************************************************
+    // pass the given loc & dest to the nearby api
+    const nearby =  {
+      method: 'POST',
+      url: 'https://tawsila-api.onrender.com/nearby', 
+      headers: {
+        'content-type': 'application/json',
+        'Accept-Encoding': 'null'
+      },
+      data: `{"Location":"${loc}","Destination":"${dest}"}`
+    };
+    axios.request(nearby).then(function(response){
+      let nearbyArrayLength = response.data.length
+      let nearbyArray = response.data
+      let nearbyLocations = []
+      let nearbyDestinations = []
+      let newLocationLat;
+      let newDestinationLat;
+      let newLocationLong;
+      let newDestinationLong;
+      let locName;
+      let destName;
+      let locWalkingDistance;
+      let destWalkingDistance;
+      // get the closest places to both loc & dest
+      for(let i=0 ; i<nearbyArrayLength ; i++){
+        if(nearbyArray[i].inputField == "Location"){
+          nearbyLocations.push(nearbyArray[i]);
+          nearbyLocations.sort((a, b) => a.distance - b.distance)
+        }else if(nearbyArray[i].inputField == "Destination"){
+          nearbyDestinations.push(nearbyArray[i]);
+        }
+      }
+      // search inside nearbyLocations, if you found any distance =0, take it as your location, else take the shortest distance
+      for(let i=0 ; i<nearbyLocations.length ; i++){
+        if(nearbyLocations[i].distance == 0){
+          newLocationLat = nearbyLocations[i].latitude;
+          newLocationLong = nearbyLocations[i].longitude;
+          location = `${newLocationLat},${newLocationLong}`
+          locName = nearbyLocations[i].name
+          // search in the orderByTime query using them by replacing only the loc
+          const options =  {
+            method: 'POST',
+            url: 'https://tawsila-api.onrender.com/orderByTime',
+            headers: {
+              'content-type': 'application/json',
+              'Accept-Encoding': 'null'
+            },
+            data: `{"Location":"${newLocationLat},${newLocationLong}","Destination":"${dest}"}`
+          };
+      // to check if you are in the /showResult/orderByDistance/ path
+      let currentURL = "/webVersion/result/orderByTime"
+      let currentOrder = "طريقك مرتب بحسب الوقت"
+      axios.request(options).then(function (response) {
+        let numberOfAvailablePaths = response.data.length
+        let data = response.data
+        
+        let routeNumber = 1
+        res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+      }).catch(function (error) {
+        console.error(error);
+      });
+          break;
+        }else if(nearbyLocations[i].distance != 0){
+          newLocationLat = nearbyLocations[0].latitude
+          newLocationLong = nearbyLocations[0].longitude
+          location = `${newLocationLat},${newLocationLong}`
+          locName = nearbyLocations[0].name
+          locWalkingDistance = nearbyLocations[0].distance
+          // search in the orderByCost query using them by replacing only the loc
+          const options =  {
+            method: 'POST',
+            url: 'https://tawsila-api.onrender.com/orderByTime',
+            headers: {
+              'content-type': 'application/json',
+              'Accept-Encoding': 'null'
+            },
+            data: `{"Location":"${newLocationLat},${newLocationLong}","Destination":"${dest}"}`
+          };
+      // to check if you are in the /showResult/orderByDistance/ path
+      let currentURL = "/webVersion/result/orderByTime"
+      let currentOrder = "طريقك مرتب بحسب الوقت"
+      axios.request(options).then(function (response) {
+        let numberOfAvailablePaths = response.data.length
+        let data = response.data
+        
+        let routeNumber = 1
+        res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+      }).catch(function (error) {
+        console.error(error);
+      });
+        }
+      }
+      // search inside nearbyDestinations, if you found any distance =0, take it as your destination, else take the shortest distance
+      for(let i=0 ; i<nearbyDestinations.length ; i++){
+        if(nearbyDestinations[i].distance == 0){
+          newDestinationLat = nearbyDestinations[i].latitude;
+          newDestinationLong = nearbyDestinations[i].longitude;
+          destination = `${newDestinationLat},${newDestinationLong}`
+          destName = nearbyDestinations[i].name
+                   // search in the orderByDistance query using them by replacing only the dest
+                   const options =  {
+                    method: 'POST',
+                    url: 'https://tawsila-api.onrender.com/orderByTime',
+                    headers: {
+                      'content-type': 'application/json',
+                      'Accept-Encoding': 'null'
+                    },
+                    data: `{"Location":"${loc}","Destination":"${newDestinationLat},${newDestinationLong}"}`
+                  };
+              // to check if you are in the /showResult/orderByDistance/ path
+              let currentURL = "/webVersion/result/orderByTime"
+              let currentOrder = "طريقك مرتب بحسب الوقت"
+              axios.request(options).then(function (response) {
+                let numberOfAvailablePaths = response.data.length
+                let data = response.data
+                
+                let routeNumber = 1
+                res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+              }).catch(function (error) {
+                console.error(error);
+              });
+          break;
+        }else if(nearbyDestinations[i].distance != 0){
+          newDestinationLat = nearbyDestinations[0].latitude
+          newDestinationLong = nearbyDestinations[0].longitude
+          destination = `${newDestinationLat},${newDestinationLong}`
+          destName = nearbyDestinations[0].name
+          destWalkingDistance = nearbyDestinations[0].distance
+          // search in the orderByDistance query using them by replacing only the dest
+          const options =  {
+            method: 'POST',
+            url: 'https://tawsila-api.onrender.com/orderByTime',
+            headers: {
+              'content-type': 'application/json',
+              'Accept-Encoding': 'null'
+            },
+            data: `{"Location":"${loc}","Destination":"${newDestinationLat},${newDestinationLong}"}`
+          };
+      // to check if you are in the /showResult/orderByDistance/ path
+      let currentURL = "/webVersion/result/orderByTime"
+      let currentOrder = "طريقك مرتب بحسب الوقت"
+      axios.request(options).then(function (response) {
+        let numberOfAvailablePaths = response.data.length
+        let data = response.data
+        
+        let routeNumber = 1
+        res.render('pages/result.ejs' , {location , destination  , routeNumber  , numberOfAvailablePaths, data,currentURL,currentOrder, locWalkingDistance, destWalkingDistance});
+      }).catch(function (error) {
+        console.error(error);
+      });
+        }
+      }
+      
+      console.log(nearbyArray)
+      console.log("********nearby locations***********")
+      console.log(nearbyLocations)
+      console.log("********nearby destinations********")
+      console.log(nearbyDestinations)
+      console.log("********test loc********")
+      console.log(`${locName}: ${newLocationLat} | ${newLocationLong} | walk: ${locWalkingDistance}`)
+      console.log("********test dest********")
+      console.log(`${destName}: ${newDestinationLat} | ${newDestinationLong} | walk: ${destWalkingDistance}`)
+    }).catch(function(error){console.log(error)})
+  }
+)
+// orderByTime details
+app.post(
+  '/webVersion/result/orderByTime/resultDetails/:id',
+  (req , res)=>{
+    const id = req.params.id
+    let location = req.query.Location
+    let destination = req.query.Destination
+    let locationWalk = req.query.LocationWalk
+    let destinationWalk = req.query.DestinationWalk
+    const options = {
+      method: 'POST',
+      url: 'https://tawsila-api.onrender.com/orderByTime',
+      headers: {
+        'content-type': 'application/json',
+        'Accept-Encoding': 'null'
+      },
+      data: `{"Location":"${location}","Destination":"${destination}"}`
+    };
+  
+    axios.request(options).then(function (response) {
+      let numberOfAvailablePaths = response.data.length
+      let data = response.data
+      
+      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data});
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }
+)
 // add new route page
 app.get(
     '/webVersion/newRoute',
