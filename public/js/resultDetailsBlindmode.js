@@ -274,7 +274,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
         
-    }else if ((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/2'))){
+    }else if ((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/2'))){
             const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -304,7 +304,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
           } else {
             console.log('annyang not supported');
           }
-    }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/3'))){
+    }else if((localStorage.getItem('order2') == 0) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/3'))){
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -334,7 +334,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
               } else {
                 console.log('annyang not supported');
               }
-    }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/4'))){
+    }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/4'))){
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -364,7 +364,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
               } else {
                 console.log('annyang not supported');
               }
-    }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/5'))){
+    }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/5'))){
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -394,7 +394,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
               } else {
                 console.log('annyang not supported');
               }
-    }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/6'))){
+    }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/6'))){
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -424,7 +424,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
               } else {
                 console.log('annyang not supported');
               }
-    }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/7'))){
+    }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/7'))){
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -454,7 +454,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
               } else {
                 console.log('annyang not supported');
               }
-    }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/8'))){
+    }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/8'))){
             const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -487,6 +487,249 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
     }
     
 
+
+if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/1'))  ){
+      const synth = window.speechSynthesis;
+      let utter = new SpeechSynthesisUtterance("");
+        utter.voiceURI = 'Google العربية';
+        utter.lang = 'ar-SA';
+        window.addEventListener("load", () => {
+          setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+          setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+        });
+         // annyang
+      if (annyang) {
+          
+          // Add Arabic language model
+          annyang.setLanguage('ar');
+        
+          // Add voice commands
+          annyang.addCommands({
+            'اعاده': () => {
+              utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+              synth.speak(utter);
+            },
+            
+          });
+         
+          
+          // Start listening for commands
+          annyang.start();
+        } else {
+          console.log('annyang not supported');
+        }
+      
+  }else if ((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/2'))){
+          const synth = window.speechSynthesis;
+      let utter = new SpeechSynthesisUtterance("");
+        utter.voiceURI = 'Google العربية';
+        utter.lang = 'ar-SA';
+        window.addEventListener("load", () => {
+          setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة زينب ثم انزل القصر العيني واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+          setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+        });
+         // annyang
+      if (annyang) {
+          
+          // Add Arabic language model
+          annyang.setLanguage('ar');
+        
+          // Add voice commands
+          annyang.addCommands({
+            'اعاده': () => {
+              utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة زينب ثم انزل القصر العيني واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+              synth.speak(utter);
+            },
+            
+          });
+         
+          
+          // Start listening for commands
+          annyang.start();
+        } else {
+          console.log('annyang not supported');
+        }
+  }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/3'))){
+          const synth = window.speechSynthesis;
+          let utter = new SpeechSynthesisUtterance("");
+            utter.voiceURI = 'Google العربية';
+            utter.lang = 'ar-SA';
+            window.addEventListener("load", () => {
+              setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+              setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+            });
+             // annyang
+          if (annyang) {
+              
+              // Add Arabic language model
+              annyang.setLanguage('ar');
+            
+              // Add voice commands
+              annyang.addCommands({
+                'اعاده': () => {
+                  utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+                  synth.speak(utter);
+                },
+                
+              });
+             
+              
+              // Start listening for commands
+              annyang.start();
+            } else {
+              console.log('annyang not supported');
+            }
+  }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/4'))){
+          const synth = window.speechSynthesis;
+          let utter = new SpeechSynthesisUtterance("");
+            utter.voiceURI = 'Google العربية';
+            utter.lang = 'ar-SA';
+            window.addEventListener("load", () => {
+              setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم انزل القصر العيني واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+              setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+            });
+             // annyang
+          if (annyang) {
+              
+              // Add Arabic language model
+              annyang.setLanguage('ar');
+            
+              // Add voice commands
+              annyang.addCommands({
+                'اعاده': () => {
+                  utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم انزل القصر العيني واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+                  synth.speak(utter);
+                },
+                
+              });
+             
+              
+              // Start listening for commands
+              annyang.start();
+            } else {
+              console.log('annyang not supported');
+            }
+  }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/5'))){
+          const synth = window.speechSynthesis;
+          let utter = new SpeechSynthesisUtterance("");
+            utter.voiceURI = 'Google العربية';
+            utter.lang = 'ar-SA';
+            window.addEventListener("load", () => {
+              setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من القصر العيني ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+              setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+            });
+             // annyang
+          if (annyang) {
+              
+              // Add Arabic language model
+              annyang.setLanguage('ar');
+            
+              // Add voice commands
+              annyang.addCommands({
+                'اعاده': () => {
+                  utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من القصر العيني ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+                  synth.speak(utter);
+                },
+                
+              });
+             
+              
+              // Start listening for commands
+              annyang.start();
+            } else {
+              console.log('annyang not supported');
+            }
+  }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/6'))){
+          const synth = window.speechSynthesis;
+          let utter = new SpeechSynthesisUtterance("");
+            utter.voiceURI = 'Google العربية';
+            utter.lang = 'ar-SA';
+            window.addEventListener("load", () => {
+              setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة زينب ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+              setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+            });
+             // annyang
+          if (annyang) {
+              
+              // Add Arabic language model
+              annyang.setLanguage('ar');
+            
+              // Add voice commands
+              annyang.addCommands({
+                'اعاده': () => {
+                  utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة زينب ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+                  synth.speak(utter);
+                },
+                
+              });
+             
+              
+              // Start listening for commands
+              annyang.start();
+            } else {
+              console.log('annyang not supported');
+            }
+  }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/7'))){
+          const synth = window.speechSynthesis;
+          let utter = new SpeechSynthesisUtterance("");
+            utter.voiceURI = 'Google العربية';
+            utter.lang = 'ar-SA';
+            window.addEventListener("load", () => {
+              setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من القصر العيني ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+              setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+            });
+             // annyang
+          if (annyang) {
+              
+              // Add Arabic language model
+              annyang.setLanguage('ar');
+            
+              // Add voice commands
+              annyang.addCommands({
+                'اعاده': () => {
+                  utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم انزل السيدة زينب واركب ميكروباص الجيزة ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من القصر العيني ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+                  synth.speak(utter);
+                },
+                
+              });
+             
+              
+              // Start listening for commands
+              annyang.start();
+            } else {
+              console.log('annyang not supported');
+            }
+  }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/8'))){
+          const synth = window.speechSynthesis;
+      let utter = new SpeechSynthesisUtterance("");
+        utter.voiceURI = 'Google العربية';
+        utter.lang = 'ar-SA';
+        window.addEventListener("load", () => {
+          setTimeout(()=>{utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد"; synth.speak(utter);}, "5000");
+          setTimeout(()=>{utter.text ="اذا كنت ترغب في سماع الطريق مرة اخرى قل اعادة"; synth.speak(utter);}, "20000");
+        });
+         // annyang
+      if (annyang) {
+          
+          // Add Arabic language model
+          annyang.setLanguage('ar');
+        
+          // Add voice commands
+          annyang.addCommands({
+            'اعاده': () => {
+              utter.text ="انزل زهراء المعادى واركب ميكروباص السيدة زينب ثم اركب اتوبيس (خط رقم: سبعة عشر ط) من السيدة عائشة ثم اركب اتوبيس (خط رقم: 8-) من ميدان الجيزة ثم انزل شارع مراد";
+              synth.speak(utter);
+            },
+            
+          });
+         
+          
+          // Start listening for commands
+          annyang.start();
+        } else {
+          console.log('annyang not supported');
+        }
+  }
 
 
 

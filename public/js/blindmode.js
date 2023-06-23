@@ -6,6 +6,7 @@ let clicked =1 ;
 localStorage.setItem('order', 3);
 const radioButtonCost = document.querySelector('#inlineRadio1');
 const radioButtonDistance = document.querySelector('#inlineRadio3');
+const radioButtonTime = document.querySelector('#inlineRadio2');
 const resultButton = document.querySelector('.result-btn');
 const resultHeading = document.querySelector('.route-heading');
 
@@ -697,6 +698,13 @@ if (annyang) {
       //  window.order = 0;
       localStorage.setItem('order', 0);
     },
+    'الوقت':()=>{
+      radioButtonTime.click();
+      utter.text ="اذا كنت ترغب في عرض الطريق مرتبا بحسب الوقت قل: نعم";
+      synth.speak(utter);
+      //  window.order = 0;
+      localStorage.setItem('order', 5);
+    },
     'نعم':()=>{
       resultButton.click();
       if(localStorage.getItem('order') == 1){
@@ -707,6 +715,9 @@ if (annyang) {
 
       }else if(localStorage.getItem('order') == 0){
         utter.text ="طريقك مرتب بحسب المسافة";
+        synth.speak(utter);
+      }else if(localStorage.getItem('order') == 5){
+        utter.text ="طريقك مرتب بحسب الوقت";
         synth.speak(utter);
       }
     }
