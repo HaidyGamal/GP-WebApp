@@ -10,7 +10,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
     onAuthStateChanged,
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
   import { getFirestore, collection, addDoc, getDocs, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
-
   const firebaseConfig = {
     apiKey: "AIzaSyAb7HACiJd16gpmh-4uZz0m1bd6qmNRbjE",
     authDomain: "public-transportation-gu-bdeed.firebaseapp.com",
@@ -167,7 +166,8 @@ querySnapshot.forEach((doc) => {
 const monitorAuthState = async () => {
   await onAuthStateChanged(auth, user => {
     if (user.emailVerified == true) {
-      console.log(user)
+      console.log(user.email)
+      localStorage.setItem("email",user.email);
       showApp()
     }
     else {
