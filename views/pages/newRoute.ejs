@@ -15,6 +15,8 @@
           class="form-control"
           id="validationCustom01"
           placeholder="نقطة الانطلاق"
+          name="Location"
+          list="Location"
           required
         />
         <div class="valid-feedback">يبدو جيدا !</div>
@@ -26,14 +28,16 @@
           class="form-control"
           id="validationCustom02"
           placeholder="الوجهة"
+          name="Destination"
+          list="Destination"
           required
         />
         <div class="valid-feedback">يبدو جيدا !</div>
       </div>
     </div>
     <!-- end of 1st row -->
-    <!-- 2nd row  -->
-    <div class="form-row">
+    <!-- 2nd row : No. of Transportation -->
+    <!-- <div class="form-row">
       <div class="col-6 mb-3">
         <label for="validationCustom05">عدد المواصلات</label>
         <input
@@ -44,17 +48,23 @@
         />
         <div class="invalid-feedback">برجاء كتابة رقم صحيح</div>
       </div>
-    </div>
+    </div> -->
     <!-- end of 2nd row -->
     <!-- 3rd row (dorpdown list , icons box) -->
     <div class="form-row">
       <div class="col-6 mb-3">
         <label for="validationCustom04">وسيلة المواصلات</label>
-        <select class="custom-select" id="validationCustom04" required>
+        <select
+          class="custom-select"
+          id="validationCustom04"
+          name="Type"
+          list="Type"
+          required
+        >
           <option selected disabled value="">اختر...</option>
-          <option value="Bus">اتوبيس</option>
-          <option value="Metro">مترو</option>
-          <option value="Microbus">ميكروباص</option>
+          <option value="bus">اتوبيس</option>
+          <option value="metro">مترو</option>
+          <option value="microbus">ميكروباص</option>
         </select>
         <div class="invalid-feedback">برجاء اختيار وسيلة مواصلات</div>
       </div>
@@ -64,6 +74,9 @@
           type="text"
           class="form-control"
           id="transportation-related"
+          name="LineName"
+          list="LineName"
+          placeholder="اسم الخط"
           required
         />
         <div class="valid-feedback">يبدو جيدا !</div>
@@ -78,6 +91,8 @@
           type="text"
           class="form-control"
           id="cost"
+          name="Cost"
+          list="Cost"
           placeholder="اختياري"
         />
       </div>
@@ -233,3 +248,5 @@
 <!-- end of client-side validation -->
 <!-- login java script -->
 <script src="/js/login.js" type="module"></script>
+<script src="/js/addNewRoute.js" type="module"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDERewK8rwT0KjgVnsWVNWf0nj0OLQBo2U"></script>

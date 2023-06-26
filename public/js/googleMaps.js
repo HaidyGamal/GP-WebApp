@@ -55,7 +55,7 @@ function getCurrentLocation() {
                 console.log(`longitude: ${longitude}`)
 
                 // convert lat , long to address
-                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitiude},${longitude}&key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw`, {
+                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitiude},${longitude}&key=AIzaSyDERewK8rwT0KjgVnsWVNWf0nj0OLQBo2U`, {
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -82,7 +82,7 @@ function initMap() {
     navigator.geolocation.watchPosition(function (position) {
         const currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         // convert lat & long to address
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyAqDsDp7F3rMVqVaJgr6ciN_RAN0E5V6Yw&language=ar`, {
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyDERewK8rwT0KjgVnsWVNWf0nj0OLQBo2U&language=ar`, {
                     headers: {
                         'Accept': 'application/json'
                     }
