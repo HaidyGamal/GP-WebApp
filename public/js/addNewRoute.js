@@ -69,104 +69,147 @@ async function takeInput() {
     destinationInput.value = `${autocompleteDest.getPlace().geometry.location.lat()},${autocompleteDest.getPlace().geometry.location.lng()}`
     localStorage.setItem('DestinationLatitude', autocompleteDest.getPlace().geometry.location.lat());
     localStorage.setItem('DestinationLongitude', autocompleteDest.getPlace().geometry.location.lng());
-
+  
     
     // firestore
     // Retrieve the "number" value from localStorage or set it to 0
-let number = parseInt(localStorage.getItem("number")) || 0;
+    let number = parseInt(localStorage.getItem("number")) || 0;
+  
+    // Define the "web" string using the current "number" value
+    let web = `WEB:${number}`;
+  
+    try {
+      let email = localStorage.getItem("email")
+      const usersRef = collection(db, "Nodes");
+      const userDoc = doc(usersRef, web);
+      await setDoc(userDoc, {
+        Cost:cost,
+        Distance: "0.7",
+        FromLatitude: locationLat,
+        FromLongitude: locationLong,
+        "Node Name": lineName,
+        ToLatitude: destinationLat,
+        ToLongitude:destinationLong ,
+        Type: type,
+        id: email
+      });
+  
+      // Increment the "number" value and store it in localStorage
+      number++;
+      localStorage.setItem("number", number);
+  
+      // Read the saved document from Firestore and log it to the console
+      const savedDoc = await getDocs(userDoc);
+      console.log(`${savedDoc.id} => ${JSON.stringify(savedDoc.data())}`);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  
+    // Read the data in Firestore and log it to the console
+    const querySnapshot = await getDocs(collection(db, "Nodes"));
+  
+    // Count the number of occurrences of each set of field values
+    const counts = {};
+    querySnapshot.forEach((doc) => {
+      const values = [
+        doc.data().Type, 
+        doc.data().Cost, 
+        doc.data().FromLatitude, 
+        doc.data().FromLongitude, 
+        doc.data()["Node Name"], 
+        doc.data().ToLatitude, 
+        doc.data().ToLongitude,
+      ];
+      const key = values.join("|");
+      counts[key] = (counts[key] || 0) + 1;
+  
+      if(counts[key] > 5){
+        console.log(`This path already exists in database (>5): ${key}`);
+        alert("This path already exists in database (>5)");
+        return;
+      }else if(counts[key] <= 5){
 
-// Define the "web" string using the current "number" value
-let web = `WEB:${number}`;
-
-try {
-  let email = localStorage.getItem("email")
-  const usersRef = collection(db, "Nodes");
-  const userDoc = doc(usersRef, web);
-  await setDoc(userDoc, {
-   Cost:cost,
-   Distance: "0.7",
-   FromLatitude: locationLat,
-   FromLongitude: locationLong,
-   "Node Name": lineName,
-   ToLatitude: destinationLat,
-   ToLongitude:destinationLong ,
-   Type: type,
-   id: email
-  });
-
-  // Increment the "number" value and store it in localStorage
-  number++;
-  localStorage.setItem("number", number);
-
-  // Read the saved document from Firestore and log it to the console
-  const savedDoc = await getDocs(userDoc);
-  console.log(`${savedDoc.id} => ${JSON.stringify(savedDoc.data())}`);
-} catch (e) {
-  console.error("Error adding document: ", e);
-}
-
-// Read the data in Firestore and log it to the console
-const querySnapshot = await getDocs(collection(db, "Nodes"));
-
-// Count the number of occurrences of each set of field values
-const counts = {};
-querySnapshot.forEach((doc) => {
-  const values = [
-    doc.data().Type, 
-    doc.data().Cost, 
-    doc.data().FromLatitude, 
-    doc.data().FromLongitude, 
-    doc.data()["Node Name"], 
-    doc.data().ToLatitude, 
-    doc.data().ToLongitude
-  ];
-  const key = values.join("|");
-  counts[key] = (counts[key] || 0) + 1;
-});
-
-// Check if any set of field values has 5 duplicates and print "HOLA" if they do
-Object.entries(counts).forEach(([key, count]) => {
-  if (count === 5) {
-    const [type, cost, fromLat, fromLong, nodeName, toLat, toLong] = key.split("|");
-    console.log("HOLA");
-    // console.log(`Field values "${key}" have ${count} duplicates.`);
-    // add new route api
-    const xhr = new XMLHttpRequest();
-    const url = "https://tawsila-api.onrender.com/addNewRoute";
-    
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          console.log(xhr.responseText);
-        } else {
-          console.error("POST request failed.");
-        }
+       
+            
+            // use API
+            const [type, cost, fromLat, fromLong, nodeName, toLat, toLong] = key.split("|");
+            // console.log(`Key:${nodeName} => count:${count}`);
+           
+            // console.log(`Field values "${key}" have ${count} duplicates.`);
+            // add new route api
+            const xhr = new XMLHttpRequest();
+            const url = "https://tawsila-api.onrender.com/addNewRoute";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                 console.log("onreadystatechange fired"); // Add this line
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                  if (xhr.status === 200) {
+                    console.log("POST request succeeded");
+                    console.log(xhr.responseText);
+                    if (xhr.responseText === "false") {
+                      console.log("API returned false, path already exists in DB");
+                      alert("This path already exists in database (API false)");
+                      return;  // Stop execution if this condition is true
+                    }
+                  } else {
+                    console.error("POST request failed.");
+                  }
+                }
+              };
+            const data = JSON.stringify({
+              "Location": `${fromLat},${fromLong}`,
+              "Destination": `${toLat }, ${toLong}`,
+              "Cost": `${cost}`,
+              "LineName": `${nodeName}`,
+              "Type": `${type}`,
+            });
+            if (counts[key] === 5) { 
+            // window.alert("Thank you, your form was sent");
+            console.log(`This form was sent for 5 times, add it to database: ${key}`);
+            console.log("HOLA");
+            xhr.send(data);
+            console.log(data);
+            }
+           
+            // console.log(xhr);
+          
       }
-    };
-    
-    const data = JSON.stringify({
-      "Location": `${fromLat},${fromLong}`,
-      "Destination": `${toLat}, ${toLong}`,
-      "Cost": `${cost}`,
-      "LineName": `${nodeName}`,
-      "Type": `${type}`,
     });
-    
-    xhr.send(data);
-    comsole.log(data);
-
-  }
-});
-
-// Log each document to the console as before
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-// });
-
-}
+  
+    // Check if any set of field values has 5 duplicates and call API
+    // Object.entries(counts).forEach(([key, count]) => {
+    //   const [type, cost, fromLat, fromLong, nodeName, toLat, toLong] = key.split("|");
+    //   if (count === 5) {
+    //     console.log(`Key:${nodeName} => count:${count}`);
+    //     console.log("HOLA");
+    //     // console.log(`Field values "${key}" have ${count} duplicates.`);
+    //     // add new route api
+    //     const xhr = new XMLHttpRequest();
+    //     const url = "https://tawsila-api.onrender.com/addNewRoute";
+    //     xhr.open("POST", url, true);
+    //     xhr.setRequestHeader("Content-Type", "application/json");
+    //     xhr.onreadystatechange = function () {
+    //       if (xhr.readyState === XMLHttpRequest.DONE) {
+    //         if (xhr.status === 200) {
+    //           console.log(xhr.responseText.summary.query);
+    //         } else {
+    //           console.error("POST request failed.");
+    //         }
+    //       }
+    //     };
+    //     const data = JSON.stringify({
+    //       "Location": `${fromLat},${fromLong}`,
+    //       "Destination": `${toLat }, ${toLong}`,
+    //       "Cost": `${cost}`,
+    //       "LineName": `${nodeName}`,
+    //       "Type": `${type}`,
+    //     });
+    //     xhr.send(data);
+    //     console.log(data);  // Log the data sent to API to the console
+    //   }
+    //   }); 
+    }
 
 
 
@@ -175,7 +218,7 @@ form.addEventListener("submit",function(event){
         event.preventDefault();
         takeInput();
         window.alert("Thank you, your form was sent");
-        setTimeout(()=>{location.reload();},5000);
+        // setTimeout(()=>{location.reload();},5000);
         // form.reset();
     })
 
