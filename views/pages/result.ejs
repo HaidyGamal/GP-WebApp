@@ -42,8 +42,10 @@
     >
       <button class="route-btn btn btn-primary">
         <h1 class="route-heading">
-          طريق رقم <%=routeNumber%> , المسافة
-          :<%=data[i][pathLength-1].totalDistance%> كم
+          طريق رقم <%=routeNumber%> : المسافة
+          :<%=data[i][pathLength-1].totalDistance%> كم ,السعر:
+          <%=data[i][pathLength-1].totalCost%> جنيه ,الوقت:
+          <%=data[i][pathLength-1].totalTime%> دقيقة
         </h1>
       </button>
     </form>
@@ -55,8 +57,10 @@
     >
       <button class="route-btn btn btn-primary">
         <h1 class="route-heading">
-          طريق رقم <%=routeNumber%> , الوقت
-          :<%=data[i][pathLength-1].totalTime%> دقيقة
+          طريق رقم <%=routeNumber%> : الوقت
+          :<%=data[i][pathLength-1].totalTime%> دقيقة ,السعر:
+          <%=data[i][pathLength-1].totalCost%> جنيه ,المسافة:
+          <%=data[i][pathLength-1].totalDistance%> كم
         </h1>
       </button>
     </form>
@@ -68,8 +72,10 @@
     >
       <button class="route-btn btn btn-primary">
         <h1 class="route-heading">
-          طريق رقم <%=routeNumber%> , السعر
-          :<%=data[i][pathLength-1].totalCost%> جنيه
+          طريق رقم <%=routeNumber%> : السعر
+          :<%=data[i][pathLength-1].totalCost%> جنيه ,المسافة:
+          <%=data[i][pathLength-1].totalDistance%> كم ,الوقت:
+          <%=data[i][pathLength-1].totalTime%> دقيقة
         </h1>
       </button>
     </form>
