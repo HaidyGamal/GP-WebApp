@@ -71,3 +71,25 @@
 .picker-route {
   padding-right: 0.5em;
 }/*# sourceMappingURL=result.css.map */
+.ticker {
+  width: 100%; /* Set the width of the button */
+  overflow: hidden; /* Hide any overflowing content */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.ticker:hover .text-wrapper {
+  animation: ticker 30s linear infinite; /* Adjust the duration as per your preference */
+  animation-fill-mode: forwards; /* Keep the animated text in the final state */
+  animation-timing-function: linear; /* Use a linear animation timing function */
+}
+
+.text-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  animation-play-state: paused; /* Pause the animation by default */
+}
+
+@keyframes ticker {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
