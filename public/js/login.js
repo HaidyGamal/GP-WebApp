@@ -44,7 +44,7 @@ function showLoginTab(e){
     loginTabClicked = true;
     signupTabClicked = false;
     if(loginTabClicked === true){
-        loginTab.style.borderBottom = '2px solid green';
+        loginTab.style.borderBottom = '2px solid #437171';
         signupTab.style.borderBottom = '';
         signupForm.style.display ='none';
         loginForm.style.display = '';
@@ -55,7 +55,7 @@ function showSignupTab(e){
     signupTabClicked = true;
     loginTabClicked = false;
     if(signupTabClicked === true){
-        signupTab.style.borderBottom = '2px solid green';
+        signupTab.style.borderBottom = '2px solid #437171';
         loginTab.style.borderBottom = '';
         signupForm.style.display ='';
         loginForm.style.display = 'none';

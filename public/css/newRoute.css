@@ -49,7 +49,11 @@ body{
 
  }
  .login-btn{
-   background-color: rgba(6, 88, 6, 0.623);
+   background-color: rgb(47, 96, 96);
+ }
+ .login-btn:hover{
+  background-color:  #418787;
+   border-color: #2e4f4f;
  }
  .auth-sections{
    display: flex;
@@ -70,7 +74,13 @@ body{
  .signup-tab{
    border-bottom: 2px solid white;
  }
- 
+ .submit-btn{
+  background-color: rgb(47, 96, 96);
+ }
+ .submit-btn:hover{
+  background-color:  #418787;
+   border-color: #2e4f4f;
+ }
  p{
    margin-top: 25px;
  }
