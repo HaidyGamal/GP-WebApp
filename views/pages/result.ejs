@@ -130,6 +130,13 @@
             <%data[routeNumber-1][i+1].name =
             data[routeNumber-1][i].name}else{%>انزل
             <%=data[routeNumber-1][i].name%> واركب ميكروباص
+            <%=data[routeNumber-1][i].lineNumber%> -> <%}%><%}else
+            if(data[routeNumber-1][i].transportationType == "metro"){%>
+            <%if(data[routeNumber-1][i+1].lineNumber ==
+            data[routeNumber-1][i].lineNumber){%>
+            <%data[routeNumber-1][i+1].name =
+            data[routeNumber-1][i].name}else{%>انزل
+            <%=data[routeNumber-1][i].name%> واركب مترو
             <%=data[routeNumber-1][i].lineNumber%> -> <%}%> <%}else
             if(data[routeNumber-1][i].transportationType == undefined){%> انزل
             <%=data[routeNumber-1][i].name%> <%}%> <%}%> : السعر

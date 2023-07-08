@@ -12,7 +12,11 @@
   if(data[id-1][i].transportationType == "microbus"){%>
   <%if(data[id-1][i+1].lineNumber == data[id-1][i].lineNumber){%>
   <%data[id-1][i+1].name = data[id-1][i].name}else{%>انزل
-  <%=data[id-1][i].name%> واركب ميكروباص <%=data[id-1][i].lineNumber%> -> <%}%>
+  <%=data[id-1][i].name%> واركب ميكروباص <%=data[id-1][i].lineNumber%> ->
+  <%}%><%}else if(data[id-1][i].transportationType == "metro"){%>
+  <%if(data[id-1][i+1].lineNumber == data[id-1][i].lineNumber){%>
+  <%data[id-1][i+1].name = data[id-1][i].name}else{%>انزل
+  <%=data[id-1][i].name%> واركب مترو <%=data[id-1][i].lineNumber%> -> <%}%>
   <%}else if(data[id-1][i].transportationType == undefined){%> انزل
   <%=data[id-1][i].name%> <%}%> <%}%>
 </ul>
