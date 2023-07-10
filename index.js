@@ -441,8 +441,66 @@ app.post(
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
-      
-      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data});
+      let results = [];
+let lineNumbers = [];
+let names = [];
+let transportationTypes = [];
+
+for (let i = 0; i < data[id - 1].length; i++) {
+  if (data[id - 1][i].transportationType == 'bus') {
+    if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+      data[id - 1][i + 1].name = data[id - 1][i].name;
+    } else {
+      const resultString = 'اركب اتوبيس (خط رقم: ' +
+        data[id - 1][i].lineNumber +
+        ') من ' +
+        data[id - 1][i].name +
+        ' -> ';
+      lineNumbers.push(data[id - 1][i].lineNumber);
+      names.push(data[id - 1][i].name);
+      transportationTypes.push(data[id - 1][i].transportationType);
+      results.push(resultString);
+    }
+  } else if (data[id - 1][i].transportationType == 'microbus') {
+    if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+      data[id - 1][i + 1].name = data[id - 1][i].name;
+    } else {
+      const resultString = 'انزل ' +
+        data[id - 1][i].name +
+        ' واركب ميكروباص ' +
+        data[id - 1][i].lineNumber +
+        ' -> ';
+      lineNumbers.push(data[id - 1][i].lineNumber);
+      names.push(data[id - 1][i].name);
+      transportationTypes.push(data[id - 1][i].transportationType);
+      results.push(resultString);
+    }
+  } else if (data[id - 1][i].transportationType == 'metro') {
+    if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+      data[id - 1][i + 1].name = data[id - 1][i].name;
+    } else {
+      const resultString = 'انزل ' +
+        data[id - 1][i].name +
+        ' واركب مترو ' +
+        data[id - 1][i].lineNumber +
+        ' -> ';
+      lineNumbers.push(data[id - 1][i].lineNumber);
+      names.push(data[id - 1][i].name);
+      transportationTypes.push(data[id - 1][i].transportationType);
+      results.push(resultString);
+    }
+  } else if (data[id - 1][i].transportationType == undefined) {
+    const resultString = 'انزل ' + data[id - 1][i].name;
+    names.push(data[id - 1][i].name);
+    results.push(resultString);
+  }
+}
+
+console.log(results); // Output the array of results
+console.log(lineNumbers); // Output the array of lineNumbers
+console.log(names); // Output the array of names
+console.log(transportationTypes); // Output the array of transportationTypes
+      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data, location, destination,results, lineNumbers,names, transportationTypes});
     }).catch(function (error) {
       console.error(error);
     });
@@ -665,7 +723,66 @@ app.post(
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
-      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data, locationWalk, destinationWalk});
+      let results = [];
+      let lineNumbers = [];
+      let names = [];
+      let transportationTypes = [];
+      
+      for (let i = 0; i < data[id - 1].length; i++) {
+        if (data[id - 1][i].transportationType == 'bus') {
+          if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+            data[id - 1][i + 1].name = data[id - 1][i].name;
+          } else {
+            const resultString = 'اركب اتوبيس (خط رقم: ' +
+              data[id - 1][i].lineNumber +
+              ') من ' +
+              data[id - 1][i].name +
+              ' -> ';
+            lineNumbers.push(data[id - 1][i].lineNumber);
+            names.push(data[id - 1][i].name);
+            transportationTypes.push(data[id - 1][i].transportationType);
+            results.push(resultString);
+          }
+        } else if (data[id - 1][i].transportationType == 'microbus') {
+          if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+            data[id - 1][i + 1].name = data[id - 1][i].name;
+          } else {
+            const resultString = 'انزل ' +
+              data[id - 1][i].name +
+              ' واركب ميكروباص ' +
+              data[id - 1][i].lineNumber +
+              ' -> ';
+            lineNumbers.push(data[id - 1][i].lineNumber);
+            names.push(data[id - 1][i].name);
+            transportationTypes.push(data[id - 1][i].transportationType);
+            results.push(resultString);
+          }
+        } else if (data[id - 1][i].transportationType == 'metro') {
+          if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+            data[id - 1][i + 1].name = data[id - 1][i].name;
+          } else {
+            const resultString = 'انزل ' +
+              data[id - 1][i].name +
+              ' واركب مترو ' +
+              data[id - 1][i].lineNumber +
+              ' -> ';
+            lineNumbers.push(data[id - 1][i].lineNumber);
+            names.push(data[id - 1][i].name);
+            transportationTypes.push(data[id - 1][i].transportationType);
+            results.push(resultString);
+          }
+        } else if (data[id - 1][i].transportationType == undefined) {
+          const resultString = 'انزل ' + data[id - 1][i].name;
+          names.push(data[id - 1][i].name);
+          results.push(resultString);
+        }
+      }
+      
+      console.log(results); // Output the array of results
+      console.log(lineNumbers); // Output the array of lineNumbers
+      console.log(names); // Output the array of names
+      console.log(transportationTypes); // Output the array of transportationTypes
+      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data, locationWalk, destinationWalk, location, destination,results, lineNumbers,names, transportationTypes});
     }).catch(function (error) {
       console.error(error);
     });
@@ -675,7 +792,22 @@ app.post(
 app.get(
     '/resultDetails/liveLocation',
     (req, res)=>{
-        res.render('pages/liveLocation.ejs')
+      const location = req.query.Location;
+      const destination = req.query.Destination;
+      const results = req.query.Results;
+      const names = req.query.names;
+      const types = req.query.types;
+      const lineNumbers = req.query.lineNumbers;
+      app.get('/api/liveLocationData', (req, res) => {
+        const dataToSend = {
+          results,
+          names,
+          types,
+          lineNumbers,
+        };
+        res.json(dataToSend);
+      });
+        res.render('pages/liveLocation.ejs',{names,types,lineNumbers})
     }
 );
 // orderByTime
@@ -895,8 +1027,66 @@ app.post(
     axios.request(options).then(function (response) {
       let numberOfAvailablePaths = response.data.length
       let data = response.data
+      let results = [];
+      let lineNumbers = [];
+      let names = [];
+      let transportationTypes = [];
       
-      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data});
+      for (let i = 0; i < data[id - 1].length; i++) {
+        if (data[id - 1][i].transportationType == 'bus') {
+          if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+            data[id - 1][i + 1].name = data[id - 1][i].name;
+          } else {
+            const resultString = 'اركب اتوبيس (خط رقم: ' +
+              data[id - 1][i].lineNumber +
+              ') من ' +
+              data[id - 1][i].name +
+              ' -> ';
+            lineNumbers.push(data[id - 1][i].lineNumber);
+            names.push(data[id - 1][i].name);
+            transportationTypes.push(data[id - 1][i].transportationType);
+            results.push(resultString);
+          }
+        } else if (data[id - 1][i].transportationType == 'microbus') {
+          if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+            data[id - 1][i + 1].name = data[id - 1][i].name;
+          } else {
+            const resultString = 'انزل ' +
+              data[id - 1][i].name +
+              ' واركب ميكروباص ' +
+              data[id - 1][i].lineNumber +
+              ' -> ';
+            lineNumbers.push(data[id - 1][i].lineNumber);
+            names.push(data[id - 1][i].name);
+            transportationTypes.push(data[id - 1][i].transportationType);
+            results.push(resultString);
+          }
+        } else if (data[id - 1][i].transportationType == 'metro') {
+          if (data[id - 1][i + 1].lineNumber == data[id - 1][i].lineNumber) {
+            data[id - 1][i + 1].name = data[id - 1][i].name;
+          } else {
+            const resultString = 'انزل ' +
+              data[id - 1][i].name +
+              ' واركب مترو ' +
+              data[id - 1][i].lineNumber +
+              ' -> ';
+            lineNumbers.push(data[id - 1][i].lineNumber);
+            names.push(data[id - 1][i].name);
+            transportationTypes.push(data[id - 1][i].transportationType);
+            results.push(resultString);
+          }
+        } else if (data[id - 1][i].transportationType == undefined) {
+          const resultString = 'انزل ' + data[id - 1][i].name;
+          names.push(data[id - 1][i].name);
+          results.push(resultString);
+        }
+      }
+      
+      console.log(results); // Output the array of results
+      console.log(lineNumbers); // Output the array of lineNumbers
+      console.log(names); // Output the array of names
+      console.log(transportationTypes); // Output the array of transportationTypes
+      res.render('pages/resultDetails.ejs' , {id  , numberOfAvailablePaths , data, location, destination,results, lineNumbers,names, transportationTypes});
     }).catch(function (error) {
       console.error(error);
     });

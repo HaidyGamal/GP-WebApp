@@ -21,7 +21,9 @@
   <%=data[id-1][i].name%> <%}%> <%}%>
 </ul>
 <div class="buttons">
-  <a href="/resultDetails/liveLocation" class="btn btn-lg live-btn btn-danger"
+  <a
+    href="/resultDetails/liveLocation?names=<%=names%>&lineNumbers=<%=lineNumbers%>&types=<%=transportationTypes%>"
+    class="btn btn-lg live-btn btn-danger"
     >تتبع مسارك على الخريطة</a
   >
   <button onclick="history.back()" class="btn btn-lg back-btn btn-primary">
@@ -30,3 +32,4 @@
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 <script src="/js/resultDetailsBlindmode.js"></script>
+<script src="/js/reviewPaths.js"></script>
