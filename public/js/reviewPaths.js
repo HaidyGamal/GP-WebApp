@@ -32,8 +32,8 @@ const setPathNotFoundCounterForURL = (url, value,id)=>{
 const setIconLikesCountForURL= (url, value)=>{
     localStorage.setItem(`iconLikesCount_${url}`,value);
 }
-const setIconDislikesCountForURL= (url, value)=>{
-    localStorage.setItem(`iconDislikesCount_${url}`,value);
+const setIconDislikesCountForURL= (url, value, id)=>{
+    localStorage.setItem(`iconDislikesCount_${url}_${id}`,value);
 }
   
   const getLikesCounterForURL = (url) => {
@@ -48,8 +48,8 @@ const setIconDislikesCountForURL= (url, value)=>{
   const getIconLikesCountForURL= (url)=>{
     return localStorage.getItem(`iconLikesCount_${url}`) || 0;
   }
-  const getIconDislikesCountForURL= (url)=>{
-    return localStorage.getItem(`iconDislikesCount_${url}`) || 0;
+  const getIconDislikesCountForURL= (url,id)=>{
+    return localStorage.getItem(`iconDislikesCount_${url}_${id}`) || 0;
   }
   
   const incrementLikesCounterForURL = (url) => {
@@ -263,17 +263,16 @@ const addReviewDocument = async (id) => {
         querySnapshot.forEach((doc) => {
     // console.log(`${doc.id} => ${doc.data().Likes}`);
     likes.push(doc.data().Likes)
-    dislikes.push(doc.data().BadPathDislikes)
-    dislikes.push(doc.data().UnFoundPathDislikes)
+    dislikes.push({BadPathDislikes:doc.data().BadPathDislikes, UnFoundPathDislikes:doc.data().UnFoundPathDislikes, id:doc.id})
     });
 for(let i = 0 ; i< dislikes.length ; i++){
- dislikesSum+= dislikes[i]
+ dislikesSum+= Number(dislikes[i].BadPathDislikes)+Number(dislikes[i].UnFoundPathDislikes);
 }
-// console.log(likes[0]);
+console.log(likes[0]);
 // console.log(dislikesSum);
 const currentURL = window.location.href;
 setIconLikesCountForURL(currentURL,Number(likes[0]));
-setIconDislikesCountForURL(currentURL,Number(dislikesSum));
+setIconDislikesCountForURL(currentURL,Number(dislikesSum), dislikes.id);
 const iconLikesCount = getIconLikesCountForURL(currentURL);
 const iconDislikesCount = getIconDislikesCountForURL(currentURL);
 
@@ -374,18 +373,17 @@ submitReviewButton.addEventListener("click" , async()=>{
         querySnapshot.forEach((doc) => {
     // console.log(`${doc.id} => ${doc.data().Likes}`);
     likes.push(doc.data().Likes)
-    dislikes.push(doc.data().BadPathDislikes)
-    dislikes.push(doc.data().UnFoundPathDislikes)
+    dislikes.push({BadPathDislikes:doc.data().BadPathDislikes, UnFoundPathDislikes:doc.data().UnFoundPathDislikes, id:doc.id})
     });
 for(let i = 0 ; i< dislikes.length ; i++){
- dislikesSum+= dislikes[i]
+ dislikesSum+= Number(dislikes[i].BadPathDislikes)+Number(dislikes[i].UnFoundPathDislikes);
 }
 // console.log(likes[0]);
 // console.log(dislikesSum);
 const currentURL = window.location.href;
 
 setIconLikesCountForURL(currentURL,Number(likes[0]));
-setIconDislikesCountForURL(currentURL,Number(dislikesSum));
+setIconDislikesCountForURL(currentURL,Number(dislikesSum), dislikes.id);
 const iconLikesCount = getIconLikesCountForURL(currentURL);
 const iconDislikesCount = getIconDislikesCountForURL(currentURL);
 
@@ -421,14 +419,14 @@ window.addEventListener("load", async()=>{
         querySnapshot.forEach((doc) => {
     // console.log(`${doc.id} => ${doc.data().Likes}`);
     likes.push(doc.data().Likes)
-    dislikes.push(doc.data().BadPathDislikes)
-    dislikes.push(doc.data().UnFoundPathDislikes)
+    dislikes.push({BadPathDislikes:doc.data().BadPathDislikes, UnFoundPathDislikes:doc.data().UnFoundPathDislikes, id:doc.id})
     });
 for(let i = 0 ; i< dislikes.length ; i++){
- dislikesSum+= dislikes[i]
+ dislikesSum+= Number(dislikes[i].BadPathDislikes)+Number(dislikes[i].UnFoundPathDislikes);
 }
 console.log(likes[0]);
-console.log(dislikesSum);
+console.log(`Dislikes sum: ${dislikesSum}`);
+console.log(dislikes);
 const currentURL = window.location.href;
 
 if(iconLikesSpan.textContent = "NaN"){
@@ -438,7 +436,8 @@ else{
     setIconLikesCountForURL(currentURL,Number(likes[0]));
 }
 
-setIconDislikesCountForURL(currentURL,Number(dislikesSum));
+
+setIconDislikesCountForURL(currentURL,Number(dislikesSum), dislikes.id);
 const iconLikesCount = getIconLikesCountForURL(currentURL);
 const iconDislikesCount = getIconDislikesCountForURL(currentURL);
 
@@ -454,4 +453,4 @@ iconDislikesSpan.textContent = Number(iconDislikesCount);
 // setIconLikesCountForURL(window.location.href, 0)
 // setLikesCounterForURL(window.location.href, 0)
 // setPathNotFoundCounterForURL(window.location.href, 0)
-// localStorage.clear()
+localStorage.clear()

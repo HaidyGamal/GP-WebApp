@@ -1,4 +1,8 @@
+localStorage.setItem('order3', 3);
+
+
 if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/1'))  ){
+  localStorage.setItem('order3', 1);
     const synth = window.speechSynthesis;
     let utter = new SpeechSynthesisUtterance("");
       utter.voiceURI = 'Google العربية';
@@ -30,6 +34,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
       }
     
     }else if ((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/2'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
     let utter = new SpeechSynthesisUtterance("");
       utter.voiceURI = 'Google العربية';
@@ -60,6 +65,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
         console.log('annyang not supported');
       }
     }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/3'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -90,6 +96,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
     }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/4'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -120,6 +127,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
     }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/5'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -150,6 +158,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
     }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/6'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -180,6 +189,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
     }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/7'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -210,6 +220,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
     }else if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/8'))){
+      localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
     let utter = new SpeechSynthesisUtterance("");
       utter.voiceURI = 'Google العربية';
@@ -244,6 +255,7 @@ if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/we
 
 
 if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/1'))  ){
+  localStorage.setItem('order3', 1);
         const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -275,6 +287,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
           }
         
     }else if ((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/2'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -305,6 +318,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
             console.log('annyang not supported');
           }
     }else if((localStorage.getItem('order2') == 0) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/3'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -335,6 +349,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
                 console.log('annyang not supported');
               }
     }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/4'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -365,6 +380,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
                 console.log('annyang not supported');
               }
     }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/5'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -395,6 +411,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
                 console.log('annyang not supported');
               }
     }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/6'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -425,6 +442,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
                 console.log('annyang not supported');
               }
     }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/7'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
             let utter = new SpeechSynthesisUtterance("");
               utter.voiceURI = 'Google العربية';
@@ -455,6 +473,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
                 console.log('annyang not supported');
               }
     }else if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/webVersion/result/orderByDistance/resultDetails/8'))){
+      localStorage.setItem('order3', 1);
             const synth = window.speechSynthesis;
         let utter = new SpeechSynthesisUtterance("");
           utter.voiceURI = 'Google العربية';
@@ -489,6 +508,7 @@ if((localStorage.getItem('order2') == 0 ) && (window.location.href.includes('/we
 
 
 if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/1'))  ){
+  localStorage.setItem('order3', 1);
       const synth = window.speechSynthesis;
       let utter = new SpeechSynthesisUtterance("");
         utter.voiceURI = 'Google العربية';
@@ -520,6 +540,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
         }
       
   }else if ((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/2'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
       let utter = new SpeechSynthesisUtterance("");
         utter.voiceURI = 'Google العربية';
@@ -550,6 +571,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
           console.log('annyang not supported');
         }
   }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/3'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
           let utter = new SpeechSynthesisUtterance("");
             utter.voiceURI = 'Google العربية';
@@ -580,6 +602,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
               console.log('annyang not supported');
             }
   }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/4'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
           let utter = new SpeechSynthesisUtterance("");
             utter.voiceURI = 'Google العربية';
@@ -610,6 +633,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
               console.log('annyang not supported');
             }
   }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/5'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
           let utter = new SpeechSynthesisUtterance("");
             utter.voiceURI = 'Google العربية';
@@ -640,6 +664,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
               console.log('annyang not supported');
             }
   }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/6'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
           let utter = new SpeechSynthesisUtterance("");
             utter.voiceURI = 'Google العربية';
@@ -670,6 +695,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
               console.log('annyang not supported');
             }
   }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/7'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
           let utter = new SpeechSynthesisUtterance("");
             utter.voiceURI = 'Google العربية';
@@ -700,6 +726,7 @@ if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/we
               console.log('annyang not supported');
             }
   }else if((localStorage.getItem('order2') == 5 ) && (window.location.href.includes('/webVersion/result/orderByTime/resultDetails/8'))){
+    localStorage.setItem('order3', 1);
           const synth = window.speechSynthesis;
       let utter = new SpeechSynthesisUtterance("");
         utter.voiceURI = 'Google العربية';
