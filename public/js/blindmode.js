@@ -192,9 +192,9 @@ if (annyang) {
           // setTimeout(()=>{utter.text = " برجاء اختيار واحد من الاقتراحات التالية";  synth.speak(utter);} , "10000");
           setTimeout(()=>{utter.text = " السرايات الغربية";  synth.speak(utter);} , "5000");
           setTimeout(()=>{utter.text = "باصييت فرانسييس";  synth.speak(utter);} , "10000");
-          setTimeout(()=>{utter.text = "طريق السويس";  synth.speak(utter);} , "15000");
-          setTimeout(()=>{utter.text = " البساتين الشرقية";  synth.speak(utter);} , "20000");
-          setTimeout(()=>{utter.text = "معمار المرشدي";  synth.speak(utter);} , "20000");
+          setTimeout(()=>{utter.text = "البساتين الشرقية";  synth.speak(utter);} , "15000");
+          setTimeout(()=>{utter.text = " معمار المرشدي";  synth.speak(utter);} , "20000");
+          setTimeout(()=>{utter.text = "مدينة الوحدة";  synth.speak(utter);} , "25000");
     },
     'السرايات الغربيه':()=>{
       setTimeout(()=>{ locInputField.value ="زهراء المعادي، Maadi as Sarayat Al Gharbeyah, Maadi, Egypt"},"1");
@@ -300,8 +300,8 @@ if (annyang) {
       
       
     },
-    'طريق السويس':()=>{
-      setTimeout(()=>{ locInputField.value ="زهراء المعادي، Cairo - Sweis Road, Maadi as Sarayat Al Gharbeyah, Maadi, Egypt"},"1");
+    'البساتين الشرقية':()=>{
+      setTimeout(()=>{ locInputField.value ="زهراء المعادى الشطر 13، El-Basatin Sharkeya, Maadi, Egypt"},"1");
       // locInputField.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
       
 
@@ -352,8 +352,8 @@ if (annyang) {
       
       
     },
-    'البساتين الشرقيه':()=>{
-      setTimeout(()=>{ locInputField.value ="زهراء المعادى الشطر 13، El-Basatin Sharkeya, Maadi, Egypt"},"1");
+    'معمار المرشدي':()=>{
+      setTimeout(()=>{ locInputField.value ="زهراء المعادي - معمار المرشدي - جراند سيتي - برج B4, El-Basatin Sharkeya, El Basatin, Egypt"},"1");
       // locInputField.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
       
 
@@ -404,8 +404,8 @@ if (annyang) {
       
       
     },
-    'معمار المرشدي':()=>{
-      setTimeout(()=>{ locInputField.value ="زهراء المعادي - معمار المرشدي - جراند سيتي - برج B4, El-Basatin Sharkeya, El Basatin, Egypt"},"1");
+    'مدينة الوحدة':()=>{
+      setTimeout(()=>{ locInputField.value ="زهراء المعادي مدينه الوحده, Maadi as Sarayat Al Gharbeyah, Maadi, Egypt"},"1");
       // locInputField.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
       
 

@@ -55,7 +55,7 @@ function getCurrentLocation() {
                 console.log(`longitude: ${longitude}`)
 
                 // convert lat , long to address
-                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitiude},${longitude}&key=AIzaSyAuYs2oF0fyvsFEF9W9eHOMmpRyEFNYT0w`, {
+                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitiude},${longitude}&key=AIzaSyBnDdZwes8n2Icz5XFeId1r5e-qhHmMWfU`, {
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -82,7 +82,7 @@ function initMap() {
     navigator.geolocation.watchPosition(function (position) {
         const currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         // convert lat & long to address
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyAuYs2oF0fyvsFEF9W9eHOMmpRyEFNYT0w&language=ar`, {
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyBnDdZwes8n2Icz5XFeId1r5e-qhHmMWfU&language=ar`, {
                     headers: {
                         'Accept': 'application/json'
                     }
@@ -116,6 +116,7 @@ function initMap() {
         const destination = new google.maps.LatLng(DestinationLatitude, DestinationLongitude); // Replace with our destination's latitude and longitude
         
         // Define route options
+        console.log(`currentLocation: ${currentLocation}`, `destination: ${destination}`)
         const routeOptions = {
             origin: currentLocation,
             destination: destination,

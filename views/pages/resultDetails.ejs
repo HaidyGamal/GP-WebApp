@@ -3,7 +3,7 @@
 <link href="/css/resultDetails.css" rel="stylesheet" type="text/css" />
 <!-- body -->
 <!-- <h1>(your path in details)</h1> -->
-<ul>
+<ul class="route-details">
   <%for(let i = 0; i < data[id-1].length; i++) {%>
   <%if(data[id-1][i].transportationType == "bus"){%>
   <%if(data[id-1][i+1].lineNumber == data[id-1][i].lineNumber){%>

@@ -453,4 +453,4 @@ iconDislikesSpan.textContent = Number(iconDislikesCount);
 // setIconLikesCountForURL(window.location.href, 0)
 // setLikesCounterForURL(window.location.href, 0)
 // setPathNotFoundCounterForURL(window.location.href, 0)
-localStorage.clear()
+// localStorage.clear()
