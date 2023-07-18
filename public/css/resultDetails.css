@@ -25,3 +25,37 @@ body{
  .buttons{
     text-align: center;
  }
+ .route-details {
+   font-weight: bold;
+   font-size: larger;
+   animation: fadeIn 1s ease-in-out;
+   padding : 3rem;
+   border: 2px solid rgb(223, 222, 222);
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);/* Add a shadow with a 5px blur radius and 30% opacity */
+ }
+ .highlight {
+   position: relative;
+   padding-left: 20px; /* Give space for the bullet point */
+ }
+ 
+ .highlight::before {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 0;
+   transform: translateY(-50%); /* Position the bullet point vertically centered */
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background-color: #000; /* Set the bullet point color */
+   animation: bulletAnimation 1s infinite; /* Apply animation to the bullet point */
+ }
+ 
+ @keyframes bulletAnimation {
+   0% { opacity: 0; transform: scale(0); }
+   100% { opacity: 1; transform: scale(1.2); }
+ }
+ @keyframes fadeIn {
+   0% { opacity: 0; transform: translateY(-20px); }
+   100% { opacity: 1; transform: translateY(0); }
+ }

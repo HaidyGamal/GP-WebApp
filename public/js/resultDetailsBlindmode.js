@@ -1,8 +1,19 @@
 localStorage.setItem('order3', 3);
 const result = document.querySelector(".route-details").innerHTML;
 const trimmedResult = result.replace(/\s+/g, ' ').trim();
-const replacedResult = trimmedResult.replace(/-&gt/g, 'ثم');
+const Result = trimmedResult.replace(/<br>(?!.*<br>)/, '');
+const replacedResult = Result.replace(/<br>/g, ' ثم ');
+
 console.log(replacedResult);
+document.addEventListener('DOMContentLoaded', function() {
+  let routeDetails = document.querySelector('.route-details');
+  routeDetails.innerHTML = routeDetails.innerHTML.replace(/([^<br>]+)/g, function(match, p1) {
+    if (p1.trim() === '') {
+      return '';
+    }
+    return '<span class="highlight">' + p1 + '</span>';
+  });
+});
 
 // if((localStorage.getItem('order2') == 1 ) && (window.location.href.includes('/webVersion/result/orderByCost/resultDetails/1'))  ){
 //   localStorage.setItem('order3', 1);
